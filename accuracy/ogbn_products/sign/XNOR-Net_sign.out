@@ -1,0 +1,620 @@
+Using backend: pytorch
+Namespace(K=5, acc_loss='acc', aggr_gpu=-1, alpha=0.5, attn_drop=0.4, avoid_features=False, batch_size=50000, chunks=1, data_dir='/home/data/pyg/', dataset='ogbn-products', dropout=0.4, emb_path='/home/scx/NARS/', epoch_setting=[500], eval_batch_size=100000, eval_every=10, example_subsets_path='/home/scx/NARS/sample_relation_subsets/examples', fixed_subsets=False, focal='first', gpu=0, inductive=False, input_drop=0.3, label_K=9, label_drop=0.5, label_mlp_layer=4, label_residual=False, load_embs=False, load_label_emb=False, lr=0.001, mag_emb=False, memory_efficient=False, mlp_layer=2, model='xnor_net_sign', num_heads=1, num_hidden=512, num_runs=10, position_emb=False, pretrain_model='ComplEx', probs_dir='../intermediate_outputs', sample_size=8, seed=0, threshold=[0.9, 0.9], use_labels=False, use_norm=False, warmup_stage=-1, weight_decay=0.0, weight_style='attention', zero_inits=False)
+----------------------------------------------------------------------------------------------------
+Run 0 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 44.1944 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.3806 10.5766, Best Val loss: 1.6484, Accs: Train: 0.6850, Val: 0.6711, Test: 0.5029, Best Val: 0.6711, Best Test: 0.5029
+Epoch 20, Time(s): 1.3909 10.0534, Best Val loss: 1.1152, Accs: Train: 0.7649, Val: 0.7563, Test: 0.5747, Best Val: 0.7563, Best Test: 0.5747
+Epoch 30, Time(s): 1.3766 9.9052, Best Val loss: 0.8680, Accs: Train: 0.8424, Val: 0.8355, Test: 0.6567, Best Val: 0.8355, Best Test: 0.6567
+Epoch 40, Time(s): 1.4338 9.7457, Best Val loss: 0.8075, Accs: Train: 0.8533, Val: 0.8456, Test: 0.6723, Best Val: 0.8456, Best Test: 0.6723
+Epoch 50, Time(s): 1.4262 10.1198, Best Val loss: 0.7747, Accs: Train: 0.8590, Val: 0.8504, Test: 0.6794, Best Val: 0.8504, Best Test: 0.6794
+Epoch 60, Time(s): 1.4086 10.1931, Best Val loss: 0.7536, Accs: Train: 0.8627, Val: 0.8537, Test: 0.6839, Best Val: 0.8537, Best Test: 0.6839
+Epoch 70, Time(s): 1.5763 10.1607, Best Val loss: 0.7389, Accs: Train: 0.8667, Val: 0.8571, Test: 0.6877, Best Val: 0.8571, Best Test: 0.6877
+Epoch 80, Time(s): 1.3747 10.0457, Best Val loss: 0.7389, Accs: Train: 0.8510, Val: 0.8401, Test: 0.6839, Best Val: 0.8571, Best Test: 0.6877
+Epoch 90, Time(s): 1.4137 10.5110, Best Val loss: 0.7110, Accs: Train: 0.8691, Val: 0.8603, Test: 0.7038, Best Val: 0.8603, Best Test: 0.7038
+Epoch 100, Time(s): 1.4768 10.8798, Best Val loss: 0.7110, Accs: Train: 0.8540, Val: 0.8432, Test: 0.6899, Best Val: 0.8603, Best Test: 0.7038
+Epoch 110, Time(s): 1.3646 10.1164, Best Val loss: 0.7110, Accs: Train: 0.8559, Val: 0.8474, Test: 0.6922, Best Val: 0.8603, Best Test: 0.7038
+Epoch 120, Time(s): 1.5266 11.5110, Best Val loss: 0.7110, Accs: Train: 0.8218, Val: 0.7981, Test: 0.6046, Best Val: 0.8603, Best Test: 0.7038
+Epoch 130, Time(s): 1.5078 10.9237, Best Val loss: 0.7110, Accs: Train: 0.8684, Val: 0.8556, Test: 0.6902, Best Val: 0.8603, Best Test: 0.7038
+Epoch 140, Time(s): 1.3799 11.3004, Best Val loss: 0.7110, Accs: Train: 0.8109, Val: 0.7939, Test: 0.6310, Best Val: 0.8603, Best Test: 0.7038
+Epoch 150, Time(s): 1.5300 11.5011, Best Val loss: 0.7110, Accs: Train: 0.8573, Val: 0.8470, Test: 0.6887, Best Val: 0.8603, Best Test: 0.7038
+Epoch 160, Time(s): 1.4011 10.2781, Best Val loss: 0.7110, Accs: Train: 0.8537, Val: 0.8441, Test: 0.6861, Best Val: 0.8603, Best Test: 0.7038
+Epoch 170, Time(s): 1.3413 9.9454, Best Val loss: 0.7110, Accs: Train: 0.8635, Val: 0.8508, Test: 0.6751, Best Val: 0.8603, Best Test: 0.7038
+Epoch 180, Time(s): 1.3745 9.9807, Best Val loss: 0.7110, Accs: Train: 0.3447, Val: 0.3396, Test: 0.2709, Best Val: 0.8603, Best Test: 0.7038
+Epoch 190, Time(s): 1.4465 11.2903, Best Val loss: 0.7110, Accs: Train: 0.8642, Val: 0.8510, Test: 0.6850, Best Val: 0.8603, Best Test: 0.7038
+Epoch 200, Time(s): 1.4631 10.2509, Best Val loss: 0.7110, Accs: Train: 0.8556, Val: 0.8397, Test: 0.6618, Best Val: 0.8603, Best Test: 0.7038
+Epoch 210, Time(s): 1.4985 9.8431, Best Val loss: 0.7110, Accs: Train: 0.8530, Val: 0.8435, Test: 0.6798, Best Val: 0.8603, Best Test: 0.7038
+Epoch 220, Time(s): 1.3662 10.0278, Best Val loss: 0.7110, Accs: Train: 0.7754, Val: 0.7562, Test: 0.5851, Best Val: 0.8603, Best Test: 0.7038
+Epoch 230, Time(s): 1.5793 9.5853, Best Val loss: 0.7110, Accs: Train: 0.8546, Val: 0.8402, Test: 0.6684, Best Val: 0.8603, Best Test: 0.7038
+Epoch 240, Time(s): 1.3965 10.3188, Best Val loss: 0.7110, Accs: Train: 0.7736, Val: 0.7449, Test: 0.5501, Best Val: 0.8603, Best Test: 0.7038
+Epoch 250, Time(s): 1.5226 10.1305, Best Val loss: 0.7110, Accs: Train: 0.8609, Val: 0.8496, Test: 0.6882, Best Val: 0.8603, Best Test: 0.7038
+Epoch 260, Time(s): 1.4182 10.5180, Best Val loss: 0.7110, Accs: Train: 0.8433, Val: 0.8351, Test: 0.6663, Best Val: 0.8603, Best Test: 0.7038
+Epoch 270, Time(s): 1.4756 9.8707, Best Val loss: 0.7110, Accs: Train: 0.8551, Val: 0.8375, Test: 0.6532, Best Val: 0.8603, Best Test: 0.7038
+Epoch 280, Time(s): 1.4692 9.7120, Best Val loss: 0.7110, Accs: Train: 0.8482, Val: 0.8385, Test: 0.6755, Best Val: 0.8603, Best Test: 0.7038
+Epoch 290, Time(s): 1.3612 9.5231, Best Val loss: 0.7110, Accs: Train: 0.8616, Val: 0.8487, Test: 0.6761, Best Val: 0.8603, Best Test: 0.7038
+Epoch 300, Time(s): 1.3953 10.0957, Best Val loss: 0.7110, Accs: Train: 0.7789, Val: 0.7613, Test: 0.5881, Best Val: 0.8603, Best Test: 0.7038
+Epoch 310, Time(s): 1.3665 9.7975, Best Val loss: 0.7110, Accs: Train: 0.8449, Val: 0.8300, Test: 0.6492, Best Val: 0.8603, Best Test: 0.7038
+Epoch 320, Time(s): 1.4184 9.9089, Best Val loss: 0.7110, Accs: Train: 0.7421, Val: 0.7354, Test: 0.5803, Best Val: 0.8603, Best Test: 0.7038
+Epoch 330, Time(s): 1.3764 10.0707, Best Val loss: 0.7110, Accs: Train: 0.8246, Val: 0.8167, Test: 0.6455, Best Val: 0.8603, Best Test: 0.7038
+Epoch 340, Time(s): 1.3855 9.6651, Best Val loss: 0.7110, Accs: Train: 0.3084, Val: 0.3084, Test: 0.2692, Best Val: 0.8603, Best Test: 0.7038
+Epoch 350, Time(s): 1.4680 11.1740, Best Val loss: 0.7110, Accs: Train: 0.8302, Val: 0.8194, Test: 0.6576, Best Val: 0.8603, Best Test: 0.7038
+Epoch 360, Time(s): 1.4657 9.7749, Best Val loss: 0.7110, Accs: Train: 0.3129, Val: 0.3138, Test: 0.2724, Best Val: 0.8603, Best Test: 0.7038
+Epoch 370, Time(s): 1.4030 9.5936, Best Val loss: 0.7110, Accs: Train: 0.8486, Val: 0.8392, Test: 0.6649, Best Val: 0.8603, Best Test: 0.7038
+Epoch 380, Time(s): 1.4661 11.0727, Best Val loss: 0.7110, Accs: Train: 0.8534, Val: 0.8448, Test: 0.6718, Best Val: 0.8603, Best Test: 0.7038
+Epoch 390, Time(s): 1.4863 9.5014, Best Val loss: 0.7110, Accs: Train: 0.8582, Val: 0.8494, Test: 0.6779, Best Val: 0.8603, Best Test: 0.7038
+Epoch 400, Time(s): 1.4141 9.8553, Best Val loss: 0.7110, Accs: Train: 0.8484, Val: 0.8425, Test: 0.6637, Best Val: 0.8603, Best Test: 0.7038
+Epoch 410, Time(s): 1.5981 10.5968, Best Val loss: 0.7110, Accs: Train: 0.3524, Val: 0.3500, Test: 0.2726, Best Val: 0.8603, Best Test: 0.7038
+Epoch 420, Time(s): 1.4631 10.9528, Best Val loss: 0.7110, Accs: Train: 0.7000, Val: 0.6797, Test: 0.5220, Best Val: 0.8603, Best Test: 0.7038
+Epoch 430, Time(s): 1.3582 10.0752, Best Val loss: 0.7110, Accs: Train: 0.4854, Val: 0.4795, Test: 0.3815, Best Val: 0.8603, Best Test: 0.7038
+Epoch 440, Time(s): 1.4444 11.1503, Best Val loss: 0.7110, Accs: Train: 0.3085, Val: 0.3085, Test: 0.2673, Best Val: 0.8603, Best Test: 0.7038
+Epoch 450, Time(s): 1.6981 10.8147, Best Val loss: 0.7110, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2691, Best Val: 0.8603, Best Test: 0.7038
+Epoch 460, Time(s): 1.4583 10.0176, Best Val loss: 0.7110, Accs: Train: 0.7989, Val: 0.7819, Test: 0.6068, Best Val: 0.8603, Best Test: 0.7038
+Epoch 470, Time(s): 1.4735 11.0493, Best Val loss: 0.7110, Accs: Train: 0.8204, Val: 0.8070, Test: 0.6282, Best Val: 0.8603, Best Test: 0.7038
+Epoch 480, Time(s): 1.4206 10.0335, Best Val loss: 0.7110, Accs: Train: 0.8220, Val: 0.8184, Test: 0.6528, Best Val: 0.8603, Best Test: 0.7038
+Epoch 490, Time(s): 1.3759 10.0459, Best Val loss: 0.7110, Accs: Train: 0.7746, Val: 0.7602, Test: 0.5809, Best Val: 0.8603, Best Test: 0.7038
+Epoch 500, Time(s): 1.3781 10.0463, Best Val loss: 0.7110, Accs: Train: 0.8354, Val: 0.8191, Test: 0.6303, Best Val: 0.8603, Best Test: 0.7038
+Stage: 0, Best Epoch 90, Val 0.8603, Test 0.7038
+----------------------------------------------------------------------------------------------------
+Run 1 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 37.0962 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.4784 11.8448, Best Val loss: 1.7124, Accs: Train: 0.6577, Val: 0.6415, Test: 0.4815, Best Val: 0.6415, Best Test: 0.4815
+Epoch 20, Time(s): 1.5265 11.7085, Best Val loss: 1.1008, Accs: Train: 0.7650, Val: 0.7580, Test: 0.5757, Best Val: 0.7580, Best Test: 0.5757
+Epoch 30, Time(s): 1.5777 10.8262, Best Val loss: 0.8899, Accs: Train: 0.8409, Val: 0.8328, Test: 0.6546, Best Val: 0.8328, Best Test: 0.6546
+Epoch 40, Time(s): 1.7092 10.3872, Best Val loss: 0.8182, Accs: Train: 0.8519, Val: 0.8435, Test: 0.6698, Best Val: 0.8435, Best Test: 0.6698
+Epoch 50, Time(s): 1.4446 10.8134, Best Val loss: 0.7814, Accs: Train: 0.8583, Val: 0.8493, Test: 0.6771, Best Val: 0.8493, Best Test: 0.6771
+Epoch 60, Time(s): 1.4443 10.4320, Best Val loss: 0.7939, Accs: Train: 0.8588, Val: 0.8497, Test: 0.6790, Best Val: 0.8497, Best Test: 0.6790
+Epoch 70, Time(s): 1.3714 10.3527, Best Val loss: 0.7485, Accs: Train: 0.8625, Val: 0.8544, Test: 0.6884, Best Val: 0.8544, Best Test: 0.6884
+Epoch 80, Time(s): 1.3943 10.4131, Best Val loss: 0.7215, Accs: Train: 0.8689, Val: 0.8596, Test: 0.6986, Best Val: 0.8596, Best Test: 0.6986
+Epoch 90, Time(s): 1.4429 10.5575, Best Val loss: 0.7215, Accs: Train: 0.8533, Val: 0.8466, Test: 0.6867, Best Val: 0.8596, Best Test: 0.6986
+Epoch 100, Time(s): 1.3677 10.6296, Best Val loss: 0.6912, Accs: Train: 0.8748, Val: 0.8643, Test: 0.7058, Best Val: 0.8643, Best Test: 0.7058
+Epoch 110, Time(s): 1.4724 11.2952, Best Val loss: 0.6912, Accs: Train: 0.7988, Val: 0.7796, Test: 0.6152, Best Val: 0.8643, Best Test: 0.7058
+Epoch 120, Time(s): 1.3932 11.6949, Best Val loss: 0.6912, Accs: Train: 0.8533, Val: 0.8408, Test: 0.6700, Best Val: 0.8643, Best Test: 0.7058
+Epoch 130, Time(s): 1.4544 10.6878, Best Val loss: 0.6912, Accs: Train: 0.8652, Val: 0.8508, Test: 0.6819, Best Val: 0.8643, Best Test: 0.7058
+Epoch 140, Time(s): 1.4855 10.5824, Best Val loss: 0.6912, Accs: Train: 0.8696, Val: 0.8573, Test: 0.6890, Best Val: 0.8643, Best Test: 0.7058
+Epoch 150, Time(s): 1.5513 11.5192, Best Val loss: 0.6912, Accs: Train: 0.8536, Val: 0.8416, Test: 0.6818, Best Val: 0.8643, Best Test: 0.7058
+Epoch 160, Time(s): 1.4785 10.6536, Best Val loss: 0.6912, Accs: Train: 0.8730, Val: 0.8616, Test: 0.6952, Best Val: 0.8643, Best Test: 0.7058
+Epoch 170, Time(s): 1.5296 11.3654, Best Val loss: 0.6912, Accs: Train: 0.8517, Val: 0.8380, Test: 0.6749, Best Val: 0.8643, Best Test: 0.7058
+Epoch 180, Time(s): 1.3602 10.6556, Best Val loss: 0.6912, Accs: Train: 0.8675, Val: 0.8527, Test: 0.6808, Best Val: 0.8643, Best Test: 0.7058
+Epoch 190, Time(s): 1.3945 10.5925, Best Val loss: 0.6912, Accs: Train: 0.1859, Val: 0.1852, Test: 0.1493, Best Val: 0.8643, Best Test: 0.7058
+Epoch 200, Time(s): 1.5077 11.6882, Best Val loss: 0.6912, Accs: Train: 0.8394, Val: 0.8256, Test: 0.6419, Best Val: 0.8643, Best Test: 0.7058
+Epoch 210, Time(s): 1.5390 10.8068, Best Val loss: 0.6912, Accs: Train: 0.7961, Val: 0.7803, Test: 0.6058, Best Val: 0.8643, Best Test: 0.7058
+Epoch 220, Time(s): 1.4577 11.3892, Best Val loss: 0.6912, Accs: Train: 0.8164, Val: 0.8014, Test: 0.6213, Best Val: 0.8643, Best Test: 0.7058
+Epoch 230, Time(s): 1.6003 11.7198, Best Val loss: 0.6912, Accs: Train: 0.8267, Val: 0.8116, Test: 0.6317, Best Val: 0.8643, Best Test: 0.7058
+Epoch 240, Time(s): 1.4790 11.1355, Best Val loss: 0.6912, Accs: Train: 0.7413, Val: 0.7124, Test: 0.5330, Best Val: 0.8643, Best Test: 0.7058
+Epoch 250, Time(s): 1.5476 11.6001, Best Val loss: 0.6912, Accs: Train: 0.8245, Val: 0.8100, Test: 0.6482, Best Val: 0.8643, Best Test: 0.7058
+Epoch 260, Time(s): 1.5097 10.5085, Best Val loss: 0.6912, Accs: Train: 0.8569, Val: 0.8472, Test: 0.6848, Best Val: 0.8643, Best Test: 0.7058
+Epoch 270, Time(s): 1.4585 10.5463, Best Val loss: 0.6912, Accs: Train: 0.8576, Val: 0.8478, Test: 0.6841, Best Val: 0.8643, Best Test: 0.7058
+Epoch 280, Time(s): 1.4651 11.6880, Best Val loss: 0.6912, Accs: Train: 0.8710, Val: 0.8603, Test: 0.6927, Best Val: 0.8643, Best Test: 0.7058
+Epoch 290, Time(s): 1.5510 11.8856, Best Val loss: 0.6912, Accs: Train: 0.8647, Val: 0.8541, Test: 0.6870, Best Val: 0.8643, Best Test: 0.7058
+Epoch 300, Time(s): 1.4670 11.6462, Best Val loss: 0.6912, Accs: Train: 0.8524, Val: 0.8381, Test: 0.6630, Best Val: 0.8643, Best Test: 0.7058
+Epoch 310, Time(s): 1.4241 10.5259, Best Val loss: 0.6912, Accs: Train: 0.8487, Val: 0.8386, Test: 0.6738, Best Val: 0.8643, Best Test: 0.7058
+Epoch 320, Time(s): 1.4771 10.5954, Best Val loss: 0.6912, Accs: Train: 0.7432, Val: 0.7335, Test: 0.5617, Best Val: 0.8643, Best Test: 0.7058
+Epoch 330, Time(s): 1.3857 10.4777, Best Val loss: 0.6912, Accs: Train: 0.8394, Val: 0.8288, Test: 0.6571, Best Val: 0.8643, Best Test: 0.7058
+Epoch 340, Time(s): 1.5121 10.3319, Best Val loss: 0.6912, Accs: Train: 0.8047, Val: 0.7861, Test: 0.6097, Best Val: 0.8643, Best Test: 0.7058
+Epoch 350, Time(s): 1.3639 13.0709, Best Val loss: 0.6912, Accs: Train: 0.7389, Val: 0.7115, Test: 0.5536, Best Val: 0.8643, Best Test: 0.7058
+Epoch 360, Time(s): 1.5143 14.0755, Best Val loss: 0.6912, Accs: Train: 0.7626, Val: 0.7469, Test: 0.5639, Best Val: 0.8643, Best Test: 0.7058
+Epoch 370, Time(s): 1.4593 11.5426, Best Val loss: 0.6912, Accs: Train: 0.8385, Val: 0.8238, Test: 0.6335, Best Val: 0.8643, Best Test: 0.7058
+Epoch 380, Time(s): 1.3613 10.8456, Best Val loss: 0.6912, Accs: Train: 0.8463, Val: 0.8363, Test: 0.6634, Best Val: 0.8643, Best Test: 0.7058
+Epoch 390, Time(s): 1.4218 10.9674, Best Val loss: 0.6912, Accs: Train: 0.8227, Val: 0.8154, Test: 0.6534, Best Val: 0.8643, Best Test: 0.7058
+Epoch 400, Time(s): 1.5158 13.1214, Best Val loss: 0.6912, Accs: Train: 0.7414, Val: 0.7104, Test: 0.5272, Best Val: 0.8643, Best Test: 0.7058
+Epoch 410, Time(s): 1.6149 11.6548, Best Val loss: 0.6912, Accs: Train: 0.3083, Val: 0.3083, Test: 0.2673, Best Val: 0.8643, Best Test: 0.7058
+Epoch 420, Time(s): 1.4997 10.9619, Best Val loss: 0.6912, Accs: Train: 0.4624, Val: 0.4594, Test: 0.3702, Best Val: 0.8643, Best Test: 0.7058
+Epoch 430, Time(s): 1.7080 11.3593, Best Val loss: 0.6912, Accs: Train: 0.8040, Val: 0.7852, Test: 0.5991, Best Val: 0.8643, Best Test: 0.7058
+Epoch 440, Time(s): 1.4453 11.1749, Best Val loss: 0.6912, Accs: Train: 0.8202, Val: 0.8106, Test: 0.6359, Best Val: 0.8643, Best Test: 0.7058
+Epoch 450, Time(s): 1.6874 10.7989, Best Val loss: 0.6912, Accs: Train: 0.8033, Val: 0.7869, Test: 0.6101, Best Val: 0.8643, Best Test: 0.7058
+Epoch 460, Time(s): 1.5184 12.0706, Best Val loss: 0.6912, Accs: Train: 0.7679, Val: 0.7406, Test: 0.5534, Best Val: 0.8643, Best Test: 0.7058
+Epoch 470, Time(s): 1.5946 11.9808, Best Val loss: 0.6912, Accs: Train: 0.8453, Val: 0.8345, Test: 0.6538, Best Val: 0.8643, Best Test: 0.7058
+Epoch 480, Time(s): 1.4929 10.6359, Best Val loss: 0.6912, Accs: Train: 0.8012, Val: 0.7882, Test: 0.6035, Best Val: 0.8643, Best Test: 0.7058
+Epoch 490, Time(s): 1.7413 10.6284, Best Val loss: 0.6912, Accs: Train: 0.8264, Val: 0.8170, Test: 0.6376, Best Val: 0.8643, Best Test: 0.7058
+Epoch 500, Time(s): 1.4071 10.4962, Best Val loss: 0.6912, Accs: Train: 0.8261, Val: 0.8147, Test: 0.6375, Best Val: 0.8643, Best Test: 0.7058
+Stage: 0, Best Epoch 100, Val 0.8643, Test 0.7058
+----------------------------------------------------------------------------------------------------
+Run 2 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 37.1124 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.4556 11.6653, Best Val loss: 1.7288, Accs: Train: 0.6696, Val: 0.6510, Test: 0.4856, Best Val: 0.6510, Best Test: 0.4856
+Epoch 20, Time(s): 1.3612 11.4594, Best Val loss: 1.1243, Accs: Train: 0.7618, Val: 0.7523, Test: 0.5730, Best Val: 0.7523, Best Test: 0.5730
+Epoch 30, Time(s): 1.3800 10.4923, Best Val loss: 0.8823, Accs: Train: 0.8420, Val: 0.8329, Test: 0.6545, Best Val: 0.8329, Best Test: 0.6545
+Epoch 40, Time(s): 1.3718 10.7555, Best Val loss: 0.8142, Accs: Train: 0.8536, Val: 0.8443, Test: 0.6706, Best Val: 0.8443, Best Test: 0.6706
+Epoch 50, Time(s): 1.8685 11.4316, Best Val loss: 0.7801, Accs: Train: 0.8596, Val: 0.8497, Test: 0.6784, Best Val: 0.8497, Best Test: 0.6784
+Epoch 60, Time(s): 1.5426 11.3080, Best Val loss: 0.7587, Accs: Train: 0.8635, Val: 0.8529, Test: 0.6833, Best Val: 0.8529, Best Test: 0.6833
+Epoch 70, Time(s): 1.6451 11.2927, Best Val loss: 0.7393, Accs: Train: 0.8668, Val: 0.8563, Test: 0.6874, Best Val: 0.8563, Best Test: 0.6874
+Epoch 80, Time(s): 1.5176 10.4984, Best Val loss: 0.7263, Accs: Train: 0.8696, Val: 0.8591, Test: 0.6914, Best Val: 0.8591, Best Test: 0.6914
+Epoch 90, Time(s): 1.3457 10.5603, Best Val loss: 0.7349, Accs: Train: 0.8704, Val: 0.8600, Test: 0.6959, Best Val: 0.8600, Best Test: 0.6959
+Epoch 100, Time(s): 1.4722 10.2471, Best Val loss: 0.7349, Accs: Train: 0.8652, Val: 0.8559, Test: 0.6958, Best Val: 0.8600, Best Test: 0.6959
+Epoch 110, Time(s): 1.5968 10.2615, Best Val loss: 0.7192, Accs: Train: 0.8693, Val: 0.8613, Test: 0.6986, Best Val: 0.8613, Best Test: 0.6986
+Epoch 120, Time(s): 1.5250 11.0273, Best Val loss: 0.7192, Accs: Train: 0.8421, Val: 0.8212, Test: 0.6382, Best Val: 0.8613, Best Test: 0.6986
+Epoch 130, Time(s): 1.5465 10.9719, Best Val loss: 0.7192, Accs: Train: 0.8669, Val: 0.8578, Test: 0.6867, Best Val: 0.8613, Best Test: 0.6986
+Epoch 140, Time(s): 1.4854 11.5141, Best Val loss: 0.7192, Accs: Train: 0.8508, Val: 0.8353, Test: 0.6413, Best Val: 0.8613, Best Test: 0.6986
+Epoch 150, Time(s): 1.5034 11.4247, Best Val loss: 0.7192, Accs: Train: 0.8634, Val: 0.8542, Test: 0.6899, Best Val: 0.8613, Best Test: 0.6986
+Epoch 160, Time(s): 1.5046 10.4602, Best Val loss: 0.7192, Accs: Train: 0.8553, Val: 0.8465, Test: 0.6892, Best Val: 0.8613, Best Test: 0.6986
+Epoch 170, Time(s): 1.3790 10.8909, Best Val loss: 0.7192, Accs: Train: 0.7750, Val: 0.7513, Test: 0.5709, Best Val: 0.8613, Best Test: 0.6986
+Epoch 180, Time(s): 1.4717 11.7722, Best Val loss: 0.7192, Accs: Train: 0.8522, Val: 0.8449, Test: 0.6705, Best Val: 0.8613, Best Test: 0.6986
+Epoch 190, Time(s): 1.5628 11.5399, Best Val loss: 0.7192, Accs: Train: 0.8500, Val: 0.8399, Test: 0.6750, Best Val: 0.8613, Best Test: 0.6986
+Epoch 200, Time(s): 1.4375 10.4097, Best Val loss: 0.7192, Accs: Train: 0.8654, Val: 0.8572, Test: 0.6919, Best Val: 0.8613, Best Test: 0.6986
+Epoch 210, Time(s): 1.5785 11.6333, Best Val loss: 0.7192, Accs: Train: 0.8343, Val: 0.8164, Test: 0.6320, Best Val: 0.8613, Best Test: 0.6986
+Epoch 220, Time(s): 1.5592 11.3917, Best Val loss: 0.7192, Accs: Train: 0.8635, Val: 0.8540, Test: 0.6917, Best Val: 0.8613, Best Test: 0.6986
+Epoch 230, Time(s): 1.4840 11.6469, Best Val loss: 0.7192, Accs: Train: 0.8429, Val: 0.8246, Test: 0.6442, Best Val: 0.8613, Best Test: 0.6986
+Epoch 240, Time(s): 1.3988 10.7157, Best Val loss: 0.7192, Accs: Train: 0.8276, Val: 0.8099, Test: 0.6237, Best Val: 0.8613, Best Test: 0.6986
+Epoch 250, Time(s): 1.5626 10.5263, Best Val loss: 0.7192, Accs: Train: 0.8014, Val: 0.7834, Test: 0.6028, Best Val: 0.8613, Best Test: 0.6986
+Epoch 260, Time(s): 1.3365 10.4157, Best Val loss: 0.7192, Accs: Train: 0.7718, Val: 0.7457, Test: 0.5555, Best Val: 0.8613, Best Test: 0.6986
+Epoch 270, Time(s): 1.3729 10.5852, Best Val loss: 0.7192, Accs: Train: 0.8401, Val: 0.8305, Test: 0.6607, Best Val: 0.8613, Best Test: 0.6986
+Epoch 280, Time(s): 1.3922 10.2715, Best Val loss: 0.7192, Accs: Train: 0.8522, Val: 0.8456, Test: 0.6774, Best Val: 0.8613, Best Test: 0.6986
+Epoch 290, Time(s): 1.6696 11.6945, Best Val loss: 0.7192, Accs: Train: 0.8223, Val: 0.8071, Test: 0.6192, Best Val: 0.8613, Best Test: 0.6986
+Epoch 300, Time(s): 1.4832 11.4554, Best Val loss: 0.7192, Accs: Train: 0.8353, Val: 0.8268, Test: 0.6378, Best Val: 0.8613, Best Test: 0.6986
+Epoch 310, Time(s): 1.4496 11.8017, Best Val loss: 0.7192, Accs: Train: 0.6158, Val: 0.5995, Test: 0.4594, Best Val: 0.8613, Best Test: 0.6986
+Epoch 320, Time(s): 1.5763 10.3521, Best Val loss: 0.7192, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8613, Best Test: 0.6986
+Epoch 330, Time(s): 1.3626 10.4914, Best Val loss: 0.7192, Accs: Train: 0.8302, Val: 0.8183, Test: 0.6317, Best Val: 0.8613, Best Test: 0.6986
+Epoch 340, Time(s): 1.5922 11.5830, Best Val loss: 0.7192, Accs: Train: 0.8288, Val: 0.8221, Test: 0.6404, Best Val: 0.8613, Best Test: 0.6986
+Epoch 350, Time(s): 1.4253 10.3549, Best Val loss: 0.7192, Accs: Train: 0.8255, Val: 0.8174, Test: 0.6349, Best Val: 0.8613, Best Test: 0.6986
+Epoch 360, Time(s): 1.3532 11.5925, Best Val loss: 0.7192, Accs: Train: 0.7205, Val: 0.7071, Test: 0.5438, Best Val: 0.8613, Best Test: 0.6986
+Epoch 370, Time(s): 1.5094 11.5192, Best Val loss: 0.7192, Accs: Train: 0.8300, Val: 0.8233, Test: 0.6440, Best Val: 0.8613, Best Test: 0.6986
+Epoch 380, Time(s): 1.4761 10.4629, Best Val loss: 0.7192, Accs: Train: 0.8385, Val: 0.8315, Test: 0.6508, Best Val: 0.8613, Best Test: 0.6986
+Epoch 390, Time(s): 1.3912 10.3580, Best Val loss: 0.7192, Accs: Train: 0.6301, Val: 0.5931, Test: 0.4437, Best Val: 0.8613, Best Test: 0.6986
+Epoch 400, Time(s): 1.4565 10.4518, Best Val loss: 0.7192, Accs: Train: 0.8418, Val: 0.8275, Test: 0.6353, Best Val: 0.8613, Best Test: 0.6986
+Epoch 410, Time(s): 1.5630 10.1979, Best Val loss: 0.7192, Accs: Train: 0.3084, Val: 0.3079, Test: 0.2612, Best Val: 0.8613, Best Test: 0.6986
+Epoch 420, Time(s): 1.4095 10.5514, Best Val loss: 0.7192, Accs: Train: 0.7706, Val: 0.7535, Test: 0.5722, Best Val: 0.8613, Best Test: 0.6986
+Epoch 430, Time(s): 1.5850 10.7596, Best Val loss: 0.7192, Accs: Train: 0.8415, Val: 0.8365, Test: 0.6616, Best Val: 0.8613, Best Test: 0.6986
+Epoch 440, Time(s): 1.3683 10.6011, Best Val loss: 0.7192, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2691, Best Val: 0.8613, Best Test: 0.6986
+Epoch 450, Time(s): 1.6478 11.4537, Best Val loss: 0.7192, Accs: Train: 0.7964, Val: 0.7801, Test: 0.6046, Best Val: 0.8613, Best Test: 0.6986
+Epoch 460, Time(s): 1.3545 10.2628, Best Val loss: 0.7192, Accs: Train: 0.7979, Val: 0.7898, Test: 0.6082, Best Val: 0.8613, Best Test: 0.6986
+Epoch 470, Time(s): 1.6546 11.5327, Best Val loss: 0.7192, Accs: Train: 0.8124, Val: 0.8016, Test: 0.6127, Best Val: 0.8613, Best Test: 0.6986
+Epoch 480, Time(s): 1.4377 11.0168, Best Val loss: 0.7192, Accs: Train: 0.8259, Val: 0.8189, Test: 0.6363, Best Val: 0.8613, Best Test: 0.6986
+Epoch 490, Time(s): 1.4264 10.1783, Best Val loss: 0.7192, Accs: Train: 0.3996, Val: 0.3984, Test: 0.3269, Best Val: 0.8613, Best Test: 0.6986
+Epoch 500, Time(s): 1.5817 11.2357, Best Val loss: 0.7192, Accs: Train: 0.4756, Val: 0.4685, Test: 0.3712, Best Val: 0.8613, Best Test: 0.6986
+Stage: 0, Best Epoch 110, Val 0.8613, Test 0.6986
+----------------------------------------------------------------------------------------------------
+Run 3 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 37.9798 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.3626 11.9786, Best Val loss: 1.7350, Accs: Train: 0.6855, Val: 0.6737, Test: 0.5072, Best Val: 0.6737, Best Test: 0.5072
+Epoch 20, Time(s): 1.4715 10.4725, Best Val loss: 1.1572, Accs: Train: 0.7538, Val: 0.7466, Test: 0.5691, Best Val: 0.7466, Best Test: 0.5691
+Epoch 30, Time(s): 1.5051 11.8039, Best Val loss: 0.8907, Accs: Train: 0.8411, Val: 0.8315, Test: 0.6533, Best Val: 0.8315, Best Test: 0.6533
+Epoch 40, Time(s): 1.5461 11.5898, Best Val loss: 0.8178, Accs: Train: 0.8528, Val: 0.8435, Test: 0.6701, Best Val: 0.8435, Best Test: 0.6701
+Epoch 50, Time(s): 1.4801 11.3559, Best Val loss: 0.7817, Accs: Train: 0.8592, Val: 0.8482, Test: 0.6782, Best Val: 0.8482, Best Test: 0.6782
+Epoch 60, Time(s): 1.5599 11.9357, Best Val loss: 0.7540, Accs: Train: 0.8638, Val: 0.8526, Test: 0.6836, Best Val: 0.8526, Best Test: 0.6836
+Epoch 70, Time(s): 1.5373 11.4159, Best Val loss: 0.7374, Accs: Train: 0.8668, Val: 0.8554, Test: 0.6879, Best Val: 0.8554, Best Test: 0.6879
+Epoch 80, Time(s): 1.3516 10.9690, Best Val loss: 0.7233, Accs: Train: 0.8703, Val: 0.8583, Test: 0.6920, Best Val: 0.8583, Best Test: 0.6920
+Epoch 90, Time(s): 1.7063 10.4850, Best Val loss: 0.7322, Accs: Train: 0.8690, Val: 0.8593, Test: 0.6958, Best Val: 0.8593, Best Test: 0.6958
+Epoch 100, Time(s): 1.4805 10.9516, Best Val loss: 0.7322, Accs: Train: 0.8546, Val: 0.8392, Test: 0.6764, Best Val: 0.8593, Best Test: 0.6958
+Epoch 110, Time(s): 1.4158 10.4813, Best Val loss: 0.7322, Accs: Train: 0.8600, Val: 0.8467, Test: 0.6845, Best Val: 0.8593, Best Test: 0.6958
+Epoch 120, Time(s): 1.3840 10.3251, Best Val loss: 0.7322, Accs: Train: 0.8670, Val: 0.8547, Test: 0.6896, Best Val: 0.8593, Best Test: 0.6958
+Epoch 130, Time(s): 1.4485 10.4470, Best Val loss: 0.7322, Accs: Train: 0.8627, Val: 0.8514, Test: 0.6921, Best Val: 0.8593, Best Test: 0.6958
+Epoch 140, Time(s): 1.6208 10.5580, Best Val loss: 0.7322, Accs: Train: 0.8366, Val: 0.8154, Test: 0.6313, Best Val: 0.8593, Best Test: 0.6958
+Epoch 150, Time(s): 1.4749 10.4130, Best Val loss: 0.7322, Accs: Train: 0.8524, Val: 0.8396, Test: 0.6817, Best Val: 0.8593, Best Test: 0.6958
+Epoch 160, Time(s): 1.3737 10.5705, Best Val loss: 0.7322, Accs: Train: 0.8656, Val: 0.8529, Test: 0.6934, Best Val: 0.8593, Best Test: 0.6958
+Epoch 170, Time(s): 1.3537 10.2219, Best Val loss: 0.7322, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8593, Best Test: 0.6958
+Epoch 180, Time(s): 1.4206 11.5316, Best Val loss: 0.7322, Accs: Train: 0.8578, Val: 0.8472, Test: 0.6713, Best Val: 0.8593, Best Test: 0.6958
+Epoch 190, Time(s): 1.4225 10.6484, Best Val loss: 0.7322, Accs: Train: 0.3083, Val: 0.3077, Test: 0.2606, Best Val: 0.8593, Best Test: 0.6958
+Epoch 200, Time(s): 1.3956 10.5983, Best Val loss: 0.7322, Accs: Train: 0.4743, Val: 0.4508, Test: 0.3539, Best Val: 0.8593, Best Test: 0.6958
+Epoch 210, Time(s): 1.4581 10.3813, Best Val loss: 0.7322, Accs: Train: 0.4807, Val: 0.4700, Test: 0.3756, Best Val: 0.8593, Best Test: 0.6958
+Epoch 220, Time(s): 1.6132 10.6040, Best Val loss: 0.7322, Accs: Train: 0.8324, Val: 0.8193, Test: 0.6445, Best Val: 0.8593, Best Test: 0.6958
+Epoch 230, Time(s): 1.4633 10.5020, Best Val loss: 0.7322, Accs: Train: 0.8234, Val: 0.8131, Test: 0.6248, Best Val: 0.8593, Best Test: 0.6958
+Epoch 240, Time(s): 1.4531 10.9409, Best Val loss: 0.7322, Accs: Train: 0.8458, Val: 0.8353, Test: 0.6596, Best Val: 0.8593, Best Test: 0.6958
+Epoch 250, Time(s): 1.3537 10.5696, Best Val loss: 0.7322, Accs: Train: 0.8474, Val: 0.8402, Test: 0.6727, Best Val: 0.8593, Best Test: 0.6958
+Epoch 260, Time(s): 1.4970 11.6258, Best Val loss: 0.7322, Accs: Train: 0.8153, Val: 0.7977, Test: 0.6158, Best Val: 0.8593, Best Test: 0.6958
+Epoch 270, Time(s): 1.7634 11.2205, Best Val loss: 0.7322, Accs: Train: 0.7164, Val: 0.6993, Test: 0.5381, Best Val: 0.8593, Best Test: 0.6958
+Epoch 280, Time(s): 1.3825 10.5790, Best Val loss: 0.7322, Accs: Train: 0.8434, Val: 0.8364, Test: 0.6799, Best Val: 0.8593, Best Test: 0.6958
+Epoch 290, Time(s): 1.4772 10.9946, Best Val loss: 0.7322, Accs: Train: 0.8277, Val: 0.8171, Test: 0.6372, Best Val: 0.8593, Best Test: 0.6958
+Epoch 300, Time(s): 1.3779 11.8168, Best Val loss: 0.7322, Accs: Train: 0.7982, Val: 0.7837, Test: 0.6097, Best Val: 0.8593, Best Test: 0.6958
+Epoch 310, Time(s): 1.4533 10.6205, Best Val loss: 0.7322, Accs: Train: 0.8251, Val: 0.8094, Test: 0.6260, Best Val: 0.8593, Best Test: 0.6958
+Epoch 320, Time(s): 1.4436 11.6285, Best Val loss: 0.7322, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8593, Best Test: 0.6958
+Epoch 330, Time(s): 1.4296 10.7315, Best Val loss: 0.7322, Accs: Train: 0.8471, Val: 0.8409, Test: 0.6801, Best Val: 0.8593, Best Test: 0.6958
+Epoch 340, Time(s): 1.5275 10.5655, Best Val loss: 0.7322, Accs: Train: 0.7595, Val: 0.7495, Test: 0.5840, Best Val: 0.8593, Best Test: 0.6958
+Epoch 350, Time(s): 1.4070 10.7087, Best Val loss: 0.7322, Accs: Train: 0.8386, Val: 0.8291, Test: 0.6442, Best Val: 0.8593, Best Test: 0.6958
+Epoch 360, Time(s): 1.7032 10.5786, Best Val loss: 0.7322, Accs: Train: 0.8517, Val: 0.8451, Test: 0.6796, Best Val: 0.8593, Best Test: 0.6958
+Epoch 370, Time(s): 1.3486 10.5336, Best Val loss: 0.7322, Accs: Train: 0.7993, Val: 0.7959, Test: 0.6117, Best Val: 0.8593, Best Test: 0.6958
+Epoch 380, Time(s): 1.4782 11.1618, Best Val loss: 0.7322, Accs: Train: 0.7664, Val: 0.7391, Test: 0.5334, Best Val: 0.8593, Best Test: 0.6958
+Epoch 390, Time(s): 1.3764 10.3337, Best Val loss: 0.7322, Accs: Train: 0.8273, Val: 0.8192, Test: 0.6395, Best Val: 0.8593, Best Test: 0.6958
+Epoch 400, Time(s): 1.3527 10.3278, Best Val loss: 0.7322, Accs: Train: 0.7437, Val: 0.7281, Test: 0.5556, Best Val: 0.8593, Best Test: 0.6958
+Epoch 410, Time(s): 1.5916 11.4239, Best Val loss: 0.7322, Accs: Train: 0.8198, Val: 0.8073, Test: 0.6255, Best Val: 0.8593, Best Test: 0.6958
+Epoch 420, Time(s): 1.4409 10.4570, Best Val loss: 0.7322, Accs: Train: 0.7762, Val: 0.7597, Test: 0.5728, Best Val: 0.8593, Best Test: 0.6958
+Epoch 430, Time(s): 1.5387 10.2115, Best Val loss: 0.7322, Accs: Train: 0.8190, Val: 0.8079, Test: 0.6118, Best Val: 0.8593, Best Test: 0.6958
+Epoch 440, Time(s): 1.4189 10.6990, Best Val loss: 0.7322, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8593, Best Test: 0.6958
+Epoch 450, Time(s): 1.4216 10.1687, Best Val loss: 0.7322, Accs: Train: 0.8374, Val: 0.8347, Test: 0.6585, Best Val: 0.8593, Best Test: 0.6958
+Epoch 460, Time(s): 1.3480 10.2697, Best Val loss: 0.7322, Accs: Train: 0.8155, Val: 0.8108, Test: 0.6288, Best Val: 0.8593, Best Test: 0.6958
+Epoch 470, Time(s): 1.4745 10.2163, Best Val loss: 0.7322, Accs: Train: 0.3259, Val: 0.3249, Test: 0.2760, Best Val: 0.8593, Best Test: 0.6958
+Epoch 480, Time(s): 1.4035 10.8938, Best Val loss: 0.7322, Accs: Train: 0.8384, Val: 0.8327, Test: 0.6576, Best Val: 0.8593, Best Test: 0.6958
+Epoch 490, Time(s): 1.4830 10.4856, Best Val loss: 0.7322, Accs: Train: 0.3830, Val: 0.3800, Test: 0.3111, Best Val: 0.8593, Best Test: 0.6958
+Epoch 500, Time(s): 1.4500 10.8384, Best Val loss: 0.7322, Accs: Train: 0.4727, Val: 0.4659, Test: 0.3720, Best Val: 0.8593, Best Test: 0.6958
+Stage: 0, Best Epoch 90, Val 0.8593, Test 0.6958
+----------------------------------------------------------------------------------------------------
+Run 4 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 38.6140 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.3656 10.5118, Best Val loss: 1.7097, Accs: Train: 0.6719, Val: 0.6559, Test: 0.4884, Best Val: 0.6559, Best Test: 0.4884
+Epoch 20, Time(s): 1.4159 10.5354, Best Val loss: 1.1013, Accs: Train: 0.7632, Val: 0.7550, Test: 0.5732, Best Val: 0.7550, Best Test: 0.5732
+Epoch 30, Time(s): 1.4721 11.3905, Best Val loss: 0.8869, Accs: Train: 0.8404, Val: 0.8330, Test: 0.6534, Best Val: 0.8330, Best Test: 0.6534
+Epoch 40, Time(s): 1.4564 11.2286, Best Val loss: 0.8142, Accs: Train: 0.8524, Val: 0.8442, Test: 0.6698, Best Val: 0.8442, Best Test: 0.6698
+Epoch 50, Time(s): 1.3551 10.4019, Best Val loss: 0.7774, Accs: Train: 0.8583, Val: 0.8494, Test: 0.6765, Best Val: 0.8494, Best Test: 0.6765
+Epoch 60, Time(s): 1.3691 10.8068, Best Val loss: 0.7548, Accs: Train: 0.8629, Val: 0.8529, Test: 0.6816, Best Val: 0.8529, Best Test: 0.6816
+Epoch 70, Time(s): 1.4032 10.3085, Best Val loss: 0.7357, Accs: Train: 0.8658, Val: 0.8577, Test: 0.6862, Best Val: 0.8577, Best Test: 0.6862
+Epoch 80, Time(s): 1.4210 11.5468, Best Val loss: 0.7208, Accs: Train: 0.8692, Val: 0.8600, Test: 0.6904, Best Val: 0.8600, Best Test: 0.6904
+Epoch 90, Time(s): 1.4597 11.5777, Best Val loss: 0.7208, Accs: Train: 0.8663, Val: 0.8577, Test: 0.6928, Best Val: 0.8600, Best Test: 0.6904
+Epoch 100, Time(s): 1.4596 11.2826, Best Val loss: 0.7208, Accs: Train: 0.8548, Val: 0.8424, Test: 0.6800, Best Val: 0.8600, Best Test: 0.6904
+Epoch 110, Time(s): 1.4331 11.7730, Best Val loss: 0.7208, Accs: Train: 0.8654, Val: 0.8531, Test: 0.6881, Best Val: 0.8600, Best Test: 0.6904
+Epoch 120, Time(s): 1.5994 11.6487, Best Val loss: 0.7208, Accs: Train: 0.8358, Val: 0.8240, Test: 0.6661, Best Val: 0.8600, Best Test: 0.6904
+Epoch 130, Time(s): 1.7128 11.3721, Best Val loss: 0.7208, Accs: Train: 0.8532, Val: 0.8426, Test: 0.6799, Best Val: 0.8600, Best Test: 0.6904
+Epoch 140, Time(s): 1.4625 10.3971, Best Val loss: 0.7208, Accs: Train: 0.8662, Val: 0.8567, Test: 0.6879, Best Val: 0.8600, Best Test: 0.6904
+Epoch 150, Time(s): 1.3796 10.6366, Best Val loss: 0.7208, Accs: Train: 0.8540, Val: 0.8351, Test: 0.6521, Best Val: 0.8600, Best Test: 0.6904
+Epoch 160, Time(s): 1.4034 10.4660, Best Val loss: 0.7208, Accs: Train: 0.8300, Val: 0.8200, Test: 0.6544, Best Val: 0.8600, Best Test: 0.6904
+Epoch 170, Time(s): 1.4955 11.5129, Best Val loss: 0.7208, Accs: Train: 0.8564, Val: 0.8488, Test: 0.6886, Best Val: 0.8600, Best Test: 0.6904
+Epoch 180, Time(s): 1.4780 10.8653, Best Val loss: 0.7208, Accs: Train: 0.7742, Val: 0.7462, Test: 0.5595, Best Val: 0.8600, Best Test: 0.6904
+Epoch 190, Time(s): 1.3561 10.4619, Best Val loss: 0.7208, Accs: Train: 0.8270, Val: 0.8025, Test: 0.6123, Best Val: 0.8600, Best Test: 0.6904
+Epoch 200, Time(s): 1.5287 11.1097, Best Val loss: 0.7208, Accs: Train: 0.8614, Val: 0.8484, Test: 0.6682, Best Val: 0.8600, Best Test: 0.6904
+Epoch 210, Time(s): 1.5155 10.4499, Best Val loss: 0.7208, Accs: Train: 0.3409, Val: 0.3398, Test: 0.2846, Best Val: 0.8600, Best Test: 0.6904
+Epoch 220, Time(s): 1.5206 12.1860, Best Val loss: 0.7208, Accs: Train: 0.8510, Val: 0.8353, Test: 0.6619, Best Val: 0.8600, Best Test: 0.6904
+Epoch 230, Time(s): 1.5779 11.0714, Best Val loss: 0.7208, Accs: Train: 0.8532, Val: 0.8404, Test: 0.6657, Best Val: 0.8600, Best Test: 0.6904
+Epoch 240, Time(s): 1.6735 10.6703, Best Val loss: 0.7208, Accs: Train: 0.7967, Val: 0.7777, Test: 0.6091, Best Val: 0.8600, Best Test: 0.6904
+Epoch 250, Time(s): 1.5412 10.2456, Best Val loss: 0.7208, Accs: Train: 0.8575, Val: 0.8471, Test: 0.6761, Best Val: 0.8600, Best Test: 0.6904
+Epoch 260, Time(s): 1.4278 10.4834, Best Val loss: 0.7208, Accs: Train: 0.8412, Val: 0.8361, Test: 0.6681, Best Val: 0.8600, Best Test: 0.6904
+Epoch 270, Time(s): 1.6391 11.4396, Best Val loss: 0.7208, Accs: Train: 0.8488, Val: 0.8370, Test: 0.6762, Best Val: 0.8600, Best Test: 0.6904
+Epoch 280, Time(s): 1.4796 11.4605, Best Val loss: 0.7208, Accs: Train: 0.8565, Val: 0.8481, Test: 0.6787, Best Val: 0.8600, Best Test: 0.6904
+Epoch 290, Time(s): 1.4468 10.8874, Best Val loss: 0.7208, Accs: Train: 0.8053, Val: 0.7907, Test: 0.5986, Best Val: 0.8600, Best Test: 0.6904
+Epoch 300, Time(s): 1.3527 11.6446, Best Val loss: 0.7208, Accs: Train: 0.8079, Val: 0.7817, Test: 0.5872, Best Val: 0.8600, Best Test: 0.6904
+Epoch 310, Time(s): 1.4774 11.5786, Best Val loss: 0.7208, Accs: Train: 0.8634, Val: 0.8545, Test: 0.6823, Best Val: 0.8600, Best Test: 0.6904
+Epoch 320, Time(s): 1.4937 11.4572, Best Val loss: 0.7208, Accs: Train: 0.8396, Val: 0.8270, Test: 0.6539, Best Val: 0.8600, Best Test: 0.6904
+Epoch 330, Time(s): 1.5247 11.6762, Best Val loss: 0.7208, Accs: Train: 0.8537, Val: 0.8427, Test: 0.6695, Best Val: 0.8600, Best Test: 0.6904
+Epoch 340, Time(s): 1.4468 11.5740, Best Val loss: 0.7208, Accs: Train: 0.8117, Val: 0.7847, Test: 0.5854, Best Val: 0.8600, Best Test: 0.6904
+Epoch 350, Time(s): 1.3818 10.4066, Best Val loss: 0.7208, Accs: Train: 0.8269, Val: 0.8108, Test: 0.6177, Best Val: 0.8600, Best Test: 0.6904
+Epoch 360, Time(s): 1.6128 11.8132, Best Val loss: 0.7208, Accs: Train: 0.0000, Val: 0.0000, Test: 0.0001, Best Val: 0.8600, Best Test: 0.6904
+Epoch 370, Time(s): 1.5263 11.9251, Best Val loss: 0.7208, Accs: Train: 0.8383, Val: 0.8311, Test: 0.6550, Best Val: 0.8600, Best Test: 0.6904
+Epoch 380, Time(s): 1.3711 10.4982, Best Val loss: 0.7208, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8600, Best Test: 0.6904
+Epoch 390, Time(s): 1.5202 10.3940, Best Val loss: 0.7208, Accs: Train: 0.7993, Val: 0.7855, Test: 0.6088, Best Val: 0.8600, Best Test: 0.6904
+Epoch 400, Time(s): 1.3598 10.3034, Best Val loss: 0.7208, Accs: Train: 0.3129, Val: 0.3137, Test: 0.2724, Best Val: 0.8600, Best Test: 0.6904
+Epoch 410, Time(s): 1.4405 11.1959, Best Val loss: 0.7208, Accs: Train: 0.8397, Val: 0.8317, Test: 0.6563, Best Val: 0.8600, Best Test: 0.6904
+Epoch 420, Time(s): 1.4379 11.4443, Best Val loss: 0.7208, Accs: Train: 0.3129, Val: 0.3137, Test: 0.2724, Best Val: 0.8600, Best Test: 0.6904
+Epoch 430, Time(s): 1.4021 10.9100, Best Val loss: 0.7208, Accs: Train: 0.3129, Val: 0.3137, Test: 0.2723, Best Val: 0.8600, Best Test: 0.6904
+Epoch 440, Time(s): 1.5809 10.6425, Best Val loss: 0.7208, Accs: Train: 0.8451, Val: 0.8360, Test: 0.6603, Best Val: 0.8600, Best Test: 0.6904
+Epoch 450, Time(s): 1.4900 10.4417, Best Val loss: 0.7208, Accs: Train: 0.3261, Val: 0.3239, Test: 0.2745, Best Val: 0.8600, Best Test: 0.6904
+Epoch 460, Time(s): 1.4405 11.2177, Best Val loss: 0.7208, Accs: Train: 0.8467, Val: 0.8416, Test: 0.6618, Best Val: 0.8600, Best Test: 0.6904
+Epoch 470, Time(s): 1.5834 10.2173, Best Val loss: 0.7208, Accs: Train: 0.7957, Val: 0.7768, Test: 0.5977, Best Val: 0.8600, Best Test: 0.6904
+Epoch 480, Time(s): 1.5191 11.6080, Best Val loss: 0.7208, Accs: Train: 0.4778, Val: 0.4732, Test: 0.3773, Best Val: 0.8600, Best Test: 0.6904
+Epoch 490, Time(s): 1.5784 11.4878, Best Val loss: 0.7208, Accs: Train: 0.7852, Val: 0.7705, Test: 0.5955, Best Val: 0.8600, Best Test: 0.6904
+Epoch 500, Time(s): 1.4786 11.6572, Best Val loss: 0.7208, Accs: Train: 0.7975, Val: 0.7885, Test: 0.6106, Best Val: 0.8600, Best Test: 0.6904
+Stage: 0, Best Epoch 80, Val 0.8600, Test 0.6904
+----------------------------------------------------------------------------------------------------
+Run 5 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 37.9938 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.3688 10.7325, Best Val loss: 1.7682, Accs: Train: 0.6745, Val: 0.6596, Test: 0.4964, Best Val: 0.6596, Best Test: 0.4964
+Epoch 20, Time(s): 1.3939 11.0293, Best Val loss: 1.1184, Accs: Train: 0.7614, Val: 0.7517, Test: 0.5743, Best Val: 0.7517, Best Test: 0.5743
+Epoch 30, Time(s): 1.4147 10.7149, Best Val loss: 0.8844, Accs: Train: 0.8424, Val: 0.8311, Test: 0.6525, Best Val: 0.8311, Best Test: 0.6525
+Epoch 40, Time(s): 1.3843 10.4758, Best Val loss: 0.8173, Accs: Train: 0.8532, Val: 0.8437, Test: 0.6686, Best Val: 0.8437, Best Test: 0.6686
+Epoch 50, Time(s): 1.3759 10.4509, Best Val loss: 0.7823, Accs: Train: 0.8588, Val: 0.8497, Test: 0.6758, Best Val: 0.8497, Best Test: 0.6758
+Epoch 60, Time(s): 1.5420 11.5879, Best Val loss: 0.7614, Accs: Train: 0.8625, Val: 0.8527, Test: 0.6808, Best Val: 0.8527, Best Test: 0.6808
+Epoch 70, Time(s): 1.5085 11.6867, Best Val loss: 0.7422, Accs: Train: 0.8661, Val: 0.8559, Test: 0.6856, Best Val: 0.8559, Best Test: 0.6856
+Epoch 80, Time(s): 1.4515 10.3012, Best Val loss: 0.7408, Accs: Train: 0.8671, Val: 0.8579, Test: 0.6932, Best Val: 0.8579, Best Test: 0.6932
+Epoch 90, Time(s): 1.4954 11.7838, Best Val loss: 0.7408, Accs: Train: 0.8494, Val: 0.8355, Test: 0.6812, Best Val: 0.8579, Best Test: 0.6932
+Epoch 100, Time(s): 1.5293 11.7841, Best Val loss: 0.7408, Accs: Train: 0.8581, Val: 0.8451, Test: 0.6917, Best Val: 0.8579, Best Test: 0.6932
+Epoch 110, Time(s): 1.4350 10.9431, Best Val loss: 0.7408, Accs: Train: 0.8506, Val: 0.8375, Test: 0.6858, Best Val: 0.8579, Best Test: 0.6932
+Epoch 120, Time(s): 1.7854 11.0372, Best Val loss: 0.7408, Accs: Train: 0.8601, Val: 0.8520, Test: 0.6858, Best Val: 0.8579, Best Test: 0.6932
+Epoch 130, Time(s): 1.3798 10.4732, Best Val loss: 0.7408, Accs: Train: 0.8658, Val: 0.8548, Test: 0.6852, Best Val: 0.8579, Best Test: 0.6932
+Epoch 140, Time(s): 1.7134 11.6406, Best Val loss: 0.7408, Accs: Train: 0.8574, Val: 0.8463, Test: 0.6905, Best Val: 0.8579, Best Test: 0.6932
+Epoch 150, Time(s): 1.3416 10.3686, Best Val loss: 0.7127, Accs: Train: 0.8707, Val: 0.8603, Test: 0.6964, Best Val: 0.8603, Best Test: 0.6964
+Epoch 160, Time(s): 1.4220 10.2477, Best Val loss: 0.6999, Accs: Train: 0.8744, Val: 0.8634, Test: 0.6993, Best Val: 0.8634, Best Test: 0.6993
+Epoch 170, Time(s): 1.4340 10.4186, Best Val loss: 0.6999, Accs: Train: 0.6585, Val: 0.6403, Test: 0.4962, Best Val: 0.8634, Best Test: 0.6993
+Epoch 180, Time(s): 1.9918 11.6020, Best Val loss: 0.6999, Accs: Train: 0.8654, Val: 0.8551, Test: 0.6925, Best Val: 0.8634, Best Test: 0.6993
+Epoch 190, Time(s): 1.4583 11.6535, Best Val loss: 0.6999, Accs: Train: 0.8267, Val: 0.8113, Test: 0.6355, Best Val: 0.8634, Best Test: 0.6993
+Epoch 200, Time(s): 1.4351 10.8527, Best Val loss: 0.6999, Accs: Train: 0.8527, Val: 0.8414, Test: 0.6857, Best Val: 0.8634, Best Test: 0.6993
+Epoch 210, Time(s): 1.6508 10.5123, Best Val loss: 0.6852, Accs: Train: 0.8742, Val: 0.8649, Test: 0.7029, Best Val: 0.8649, Best Test: 0.7029
+Epoch 220, Time(s): 1.6245 11.7199, Best Val loss: 0.6852, Accs: Train: 0.8714, Val: 0.8599, Test: 0.7022, Best Val: 0.8649, Best Test: 0.7029
+Epoch 230, Time(s): 1.4657 11.5285, Best Val loss: 0.6852, Accs: Train: 0.8448, Val: 0.8271, Test: 0.6403, Best Val: 0.8649, Best Test: 0.7029
+Epoch 240, Time(s): 1.4794 10.6910, Best Val loss: 0.6852, Accs: Train: 0.8383, Val: 0.8197, Test: 0.6340, Best Val: 0.8649, Best Test: 0.7029
+Epoch 250, Time(s): 1.4636 10.8005, Best Val loss: 0.6852, Accs: Train: 0.8685, Val: 0.8601, Test: 0.7000, Best Val: 0.8649, Best Test: 0.7029
+Epoch 260, Time(s): 1.4479 10.3928, Best Val loss: 0.6852, Accs: Train: 0.8562, Val: 0.8461, Test: 0.6831, Best Val: 0.8649, Best Test: 0.7029
+Epoch 270, Time(s): 1.4788 11.6424, Best Val loss: 0.6852, Accs: Train: 0.8524, Val: 0.8379, Test: 0.6547, Best Val: 0.8649, Best Test: 0.7029
+Epoch 280, Time(s): 1.3655 10.3431, Best Val loss: 0.6852, Accs: Train: 0.8402, Val: 0.8202, Test: 0.6489, Best Val: 0.8649, Best Test: 0.7029
+Epoch 290, Time(s): 1.3709 10.5758, Best Val loss: 0.6852, Accs: Train: 0.8404, Val: 0.8276, Test: 0.6410, Best Val: 0.8649, Best Test: 0.7029
+Epoch 300, Time(s): 1.5601 11.0542, Best Val loss: 0.6852, Accs: Train: 0.8653, Val: 0.8545, Test: 0.6963, Best Val: 0.8649, Best Test: 0.7029
+Epoch 310, Time(s): 1.4830 11.5947, Best Val loss: 0.6852, Accs: Train: 0.8607, Val: 0.8517, Test: 0.6767, Best Val: 0.8649, Best Test: 0.7029
+Epoch 320, Time(s): 1.5354 11.4381, Best Val loss: 0.6852, Accs: Train: 0.8524, Val: 0.8373, Test: 0.6578, Best Val: 0.8649, Best Test: 0.7029
+Epoch 330, Time(s): 1.5808 11.4956, Best Val loss: 0.6852, Accs: Train: 0.8033, Val: 0.7726, Test: 0.5786, Best Val: 0.8649, Best Test: 0.7029
+Epoch 340, Time(s): 1.4936 11.9003, Best Val loss: 0.6852, Accs: Train: 0.8532, Val: 0.8446, Test: 0.6807, Best Val: 0.8649, Best Test: 0.7029
+Epoch 350, Time(s): 1.4783 11.6176, Best Val loss: 0.6852, Accs: Train: 0.8393, Val: 0.8303, Test: 0.6588, Best Val: 0.8649, Best Test: 0.7029
+Epoch 360, Time(s): 1.5095 11.5305, Best Val loss: 0.6852, Accs: Train: 0.8495, Val: 0.8359, Test: 0.6540, Best Val: 0.8649, Best Test: 0.7029
+Epoch 370, Time(s): 1.5789 11.0631, Best Val loss: 0.6852, Accs: Train: 0.7754, Val: 0.7597, Test: 0.5826, Best Val: 0.8649, Best Test: 0.7029
+Epoch 380, Time(s): 1.5241 11.5983, Best Val loss: 0.6852, Accs: Train: 0.8324, Val: 0.8208, Test: 0.6438, Best Val: 0.8649, Best Test: 0.7029
+Epoch 390, Time(s): 1.6599 11.6765, Best Val loss: 0.6852, Accs: Train: 0.8432, Val: 0.8345, Test: 0.6569, Best Val: 0.8649, Best Test: 0.7029
+Epoch 400, Time(s): 1.5686 10.8214, Best Val loss: 0.6852, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2692, Best Val: 0.8649, Best Test: 0.7029
+Epoch 410, Time(s): 1.5988 11.7546, Best Val loss: 0.6852, Accs: Train: 0.8345, Val: 0.8271, Test: 0.6426, Best Val: 0.8649, Best Test: 0.7029
+Epoch 420, Time(s): 1.4361 10.5398, Best Val loss: 0.6852, Accs: Train: 0.8386, Val: 0.8307, Test: 0.6581, Best Val: 0.8649, Best Test: 0.7029
+Epoch 430, Time(s): 1.4773 10.4662, Best Val loss: 0.6852, Accs: Train: 0.0138, Val: 0.0132, Test: 0.0668, Best Val: 0.8649, Best Test: 0.7029
+Epoch 440, Time(s): 1.3985 10.5277, Best Val loss: 0.6852, Accs: Train: 0.8351, Val: 0.8303, Test: 0.6450, Best Val: 0.8649, Best Test: 0.7029
+Epoch 450, Time(s): 1.5642 11.6325, Best Val loss: 0.6852, Accs: Train: 0.7943, Val: 0.7812, Test: 0.5959, Best Val: 0.8649, Best Test: 0.7029
+Epoch 460, Time(s): 1.4730 10.8811, Best Val loss: 0.6852, Accs: Train: 0.8281, Val: 0.8209, Test: 0.6317, Best Val: 0.8649, Best Test: 0.7029
+Epoch 470, Time(s): 1.3960 10.3385, Best Val loss: 0.6852, Accs: Train: 0.3129, Val: 0.3137, Test: 0.2724, Best Val: 0.8649, Best Test: 0.7029
+Epoch 480, Time(s): 1.3975 10.5974, Best Val loss: 0.6852, Accs: Train: 0.0000, Val: 0.0000, Test: 0.0000, Best Val: 0.8649, Best Test: 0.7029
+Epoch 490, Time(s): 1.3883 11.6964, Best Val loss: 0.6852, Accs: Train: 0.8170, Val: 0.8058, Test: 0.6111, Best Val: 0.8649, Best Test: 0.7029
+Epoch 500, Time(s): 1.5396 11.5925, Best Val loss: 0.6852, Accs: Train: 0.8119, Val: 0.8048, Test: 0.6208, Best Val: 0.8649, Best Test: 0.7029
+Stage: 0, Best Epoch 210, Val 0.8649, Test 0.7029
+----------------------------------------------------------------------------------------------------
+Run 6 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 39.9496 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.5486 11.9969, Best Val loss: 1.7013, Accs: Train: 0.6755, Val: 0.6584, Test: 0.4953, Best Val: 0.6584, Best Test: 0.4953
+Epoch 20, Time(s): 1.4683 11.4532, Best Val loss: 1.1197, Accs: Train: 0.7615, Val: 0.7530, Test: 0.5733, Best Val: 0.7530, Best Test: 0.5733
+Epoch 30, Time(s): 1.5225 11.1333, Best Val loss: 0.8853, Accs: Train: 0.8420, Val: 0.8323, Test: 0.6541, Best Val: 0.8323, Best Test: 0.6541
+Epoch 40, Time(s): 1.3970 10.8440, Best Val loss: 0.8126, Accs: Train: 0.8530, Val: 0.8430, Test: 0.6688, Best Val: 0.8430, Best Test: 0.6688
+Epoch 50, Time(s): 1.3915 9.6676, Best Val loss: 0.7779, Accs: Train: 0.8599, Val: 0.8493, Test: 0.6772, Best Val: 0.8493, Best Test: 0.6772
+Epoch 60, Time(s): 1.4331 9.8150, Best Val loss: 0.7542, Accs: Train: 0.8637, Val: 0.8542, Test: 0.6830, Best Val: 0.8542, Best Test: 0.6830
+Epoch 70, Time(s): 1.4986 10.7896, Best Val loss: 0.7406, Accs: Train: 0.8668, Val: 0.8559, Test: 0.6872, Best Val: 0.8559, Best Test: 0.6872
+Epoch 80, Time(s): 1.4549 10.4754, Best Val loss: 0.7406, Accs: Train: 0.8664, Val: 0.8549, Test: 0.6812, Best Val: 0.8559, Best Test: 0.6872
+Epoch 90, Time(s): 1.5719 11.1053, Best Val loss: 0.7163, Accs: Train: 0.8707, Val: 0.8602, Test: 0.7032, Best Val: 0.8602, Best Test: 0.7032
+Epoch 100, Time(s): 1.3665 9.7466, Best Val loss: 0.7163, Accs: Train: 0.8457, Val: 0.8325, Test: 0.6822, Best Val: 0.8602, Best Test: 0.7032
+Epoch 110, Time(s): 1.6210 9.8640, Best Val loss: 0.7218, Accs: Train: 0.8711, Val: 0.8607, Test: 0.7047, Best Val: 0.8607, Best Test: 0.7047
+Epoch 120, Time(s): 1.4362 10.7292, Best Val loss: 0.7259, Accs: Train: 0.8732, Val: 0.8645, Test: 0.7132, Best Val: 0.8645, Best Test: 0.7132
+Epoch 130, Time(s): 1.5489 10.8055, Best Val loss: 0.7259, Accs: Train: 0.8461, Val: 0.8351, Test: 0.6613, Best Val: 0.8645, Best Test: 0.7132
+Epoch 140, Time(s): 1.4451 9.5135, Best Val loss: 0.7259, Accs: Train: 0.8682, Val: 0.8599, Test: 0.7077, Best Val: 0.8645, Best Test: 0.7132
+Epoch 150, Time(s): 1.4676 11.3722, Best Val loss: 0.7040, Accs: Train: 0.8751, Val: 0.8667, Test: 0.7106, Best Val: 0.8667, Best Test: 0.7106
+Epoch 160, Time(s): 1.4957 11.1962, Best Val loss: 0.7040, Accs: Train: 0.8696, Val: 0.8576, Test: 0.6931, Best Val: 0.8667, Best Test: 0.7106
+Epoch 170, Time(s): 1.3859 10.2143, Best Val loss: 0.7040, Accs: Train: 0.8423, Val: 0.8217, Test: 0.6434, Best Val: 0.8667, Best Test: 0.7106
+Epoch 180, Time(s): 1.3846 9.7890, Best Val loss: 0.7040, Accs: Train: 0.5631, Val: 0.5380, Test: 0.3943, Best Val: 0.8667, Best Test: 0.7106
+Epoch 190, Time(s): 1.5534 11.0901, Best Val loss: 0.7040, Accs: Train: 0.8722, Val: 0.8638, Test: 0.6989, Best Val: 0.8667, Best Test: 0.7106
+Epoch 200, Time(s): 1.4892 10.9752, Best Val loss: 0.7040, Accs: Train: 0.8048, Val: 0.7872, Test: 0.6219, Best Val: 0.8667, Best Test: 0.7106
+Epoch 210, Time(s): 1.6520 10.4836, Best Val loss: 0.7040, Accs: Train: 0.8412, Val: 0.8209, Test: 0.6331, Best Val: 0.8667, Best Test: 0.7106
+Epoch 220, Time(s): 1.3649 9.9720, Best Val loss: 0.7040, Accs: Train: 0.8245, Val: 0.8097, Test: 0.6296, Best Val: 0.8667, Best Test: 0.7106
+Epoch 230, Time(s): 2.0310 11.4150, Best Val loss: 0.7040, Accs: Train: 0.8685, Val: 0.8566, Test: 0.6895, Best Val: 0.8667, Best Test: 0.7106
+Epoch 240, Time(s): 1.5187 10.2840, Best Val loss: 0.7040, Accs: Train: 0.8005, Val: 0.7808, Test: 0.6064, Best Val: 0.8667, Best Test: 0.7106
+Epoch 250, Time(s): 1.4830 10.8249, Best Val loss: 0.7040, Accs: Train: 0.3144, Val: 0.3147, Test: 0.2699, Best Val: 0.8667, Best Test: 0.7106
+Epoch 260, Time(s): 1.5277 10.8594, Best Val loss: 0.7040, Accs: Train: 0.8286, Val: 0.8133, Test: 0.6433, Best Val: 0.8667, Best Test: 0.7106
+Epoch 270, Time(s): 1.4845 10.6847, Best Val loss: 0.7040, Accs: Train: 0.8601, Val: 0.8458, Test: 0.6771, Best Val: 0.8667, Best Test: 0.7106
+Epoch 280, Time(s): 1.3602 10.0630, Best Val loss: 0.7040, Accs: Train: 0.8535, Val: 0.8460, Test: 0.6666, Best Val: 0.8667, Best Test: 0.7106
+Epoch 290, Time(s): 1.3464 9.8800, Best Val loss: 0.7040, Accs: Train: 0.8495, Val: 0.8415, Test: 0.6609, Best Val: 0.8667, Best Test: 0.7106
+Epoch 300, Time(s): 1.4902 10.3751, Best Val loss: 0.7040, Accs: Train: 0.8427, Val: 0.8353, Test: 0.6701, Best Val: 0.8667, Best Test: 0.7106
+Epoch 310, Time(s): 1.3898 9.8413, Best Val loss: 0.7040, Accs: Train: 0.8354, Val: 0.8212, Test: 0.6472, Best Val: 0.8667, Best Test: 0.7106
+Epoch 320, Time(s): 1.4600 9.6092, Best Val loss: 0.7040, Accs: Train: 0.8043, Val: 0.7962, Test: 0.6098, Best Val: 0.8667, Best Test: 0.7106
+Epoch 330, Time(s): 1.4072 9.8780, Best Val loss: 0.7040, Accs: Train: 0.8510, Val: 0.8454, Test: 0.6841, Best Val: 0.8667, Best Test: 0.7106
+Epoch 340, Time(s): 1.4279 9.7777, Best Val loss: 0.7040, Accs: Train: 0.0556, Val: 0.0567, Test: 0.0453, Best Val: 0.8667, Best Test: 0.7106
+Epoch 350, Time(s): 1.4302 10.0285, Best Val loss: 0.7040, Accs: Train: 0.3084, Val: 0.3079, Test: 0.2612, Best Val: 0.8667, Best Test: 0.7106
+Epoch 360, Time(s): 1.4815 10.9503, Best Val loss: 0.7040, Accs: Train: 0.8332, Val: 0.8216, Test: 0.6483, Best Val: 0.8667, Best Test: 0.7106
+Epoch 370, Time(s): 1.4006 10.3264, Best Val loss: 0.7040, Accs: Train: 0.8406, Val: 0.8304, Test: 0.6456, Best Val: 0.8667, Best Test: 0.7106
+Epoch 380, Time(s): 1.5866 9.8561, Best Val loss: 0.7040, Accs: Train: 0.3083, Val: 0.3077, Test: 0.2601, Best Val: 0.8667, Best Test: 0.7106
+Epoch 390, Time(s): 1.3696 9.7580, Best Val loss: 0.7040, Accs: Train: 0.3083, Val: 0.3077, Test: 0.2601, Best Val: 0.8667, Best Test: 0.7106
+Epoch 400, Time(s): 1.4856 11.0061, Best Val loss: 0.7040, Accs: Train: 0.7663, Val: 0.7522, Test: 0.5744, Best Val: 0.8667, Best Test: 0.7106
+Epoch 410, Time(s): 1.5282 10.8879, Best Val loss: 0.7040, Accs: Train: 0.6319, Val: 0.6056, Test: 0.4536, Best Val: 0.8667, Best Test: 0.7106
+Epoch 420, Time(s): 1.3820 9.8617, Best Val loss: 0.7040, Accs: Train: 0.8075, Val: 0.7941, Test: 0.6020, Best Val: 0.8667, Best Test: 0.7106
+Epoch 430, Time(s): 1.5761 10.3328, Best Val loss: 0.7040, Accs: Train: 0.7949, Val: 0.7787, Test: 0.5864, Best Val: 0.8667, Best Test: 0.7106
+Epoch 440, Time(s): 1.3802 10.1346, Best Val loss: 0.7040, Accs: Train: 0.7981, Val: 0.7916, Test: 0.6084, Best Val: 0.8667, Best Test: 0.7106
+Epoch 450, Time(s): 1.7652 10.2374, Best Val loss: 0.7040, Accs: Train: 0.3084, Val: 0.3079, Test: 0.2612, Best Val: 0.8667, Best Test: 0.7106
+Epoch 460, Time(s): 1.3893 9.8766, Best Val loss: 0.7040, Accs: Train: 0.8423, Val: 0.8338, Test: 0.6447, Best Val: 0.8667, Best Test: 0.7106
+Epoch 470, Time(s): 1.3601 9.5869, Best Val loss: 0.7040, Accs: Train: 0.7865, Val: 0.7808, Test: 0.6020, Best Val: 0.8667, Best Test: 0.7106
+Epoch 480, Time(s): 1.3944 9.8473, Best Val loss: 0.7040, Accs: Train: 0.3083, Val: 0.3083, Test: 0.2673, Best Val: 0.8667, Best Test: 0.7106
+Epoch 490, Time(s): 1.3946 10.0826, Best Val loss: 0.7040, Accs: Train: 0.8535, Val: 0.8459, Test: 0.6723, Best Val: 0.8667, Best Test: 0.7106
+Epoch 500, Time(s): 1.4612 9.9577, Best Val loss: 0.7040, Accs: Train: 0.3084, Val: 0.3079, Test: 0.2612, Best Val: 0.8667, Best Test: 0.7106
+Stage: 0, Best Epoch 150, Val 0.8667, Test 0.7106
+----------------------------------------------------------------------------------------------------
+Run 7 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 40.7665 s
+# Params: 3477000
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:49: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.lt(-1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of index_put_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[indices] = tensor (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/TensorAdvancedIndexing.cpp:515.)
+  m[weight.gt(1.0)] = 0
+/home/mingyupark/pyg/SAGN_with_SLE/src/function.py:50: UserWarning: Use of masked_fill_ on expanded tensors is deprecated. Please clone() the tensor before performing this operation. This also applies to advanced indexing e.g. tensor[mask] = scalar (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180544224/work/aten/src/ATen/native/cuda/Indexing.cu:946.)
+  m[weight.gt(1.0)] = 0
+Epoch 10, Time(s): 1.5433 11.9739, Best Val loss: 1.7376, Accs: Train: 0.6764, Val: 0.6586, Test: 0.4950, Best Val: 0.6586, Best Test: 0.4950
+Epoch 20, Time(s): 1.5726 11.2931, Best Val loss: 1.1463, Accs: Train: 0.7578, Val: 0.7496, Test: 0.5739, Best Val: 0.7496, Best Test: 0.5739
+Epoch 30, Time(s): 1.3894 11.3864, Best Val loss: 0.8829, Accs: Train: 0.8426, Val: 0.8318, Test: 0.6560, Best Val: 0.8318, Best Test: 0.6560
+Epoch 40, Time(s): 1.5140 9.6244, Best Val loss: 0.8101, Accs: Train: 0.8540, Val: 0.8443, Test: 0.6690, Best Val: 0.8443, Best Test: 0.6690
+Epoch 50, Time(s): 1.3726 9.9732, Best Val loss: 0.7744, Accs: Train: 0.8601, Val: 0.8507, Test: 0.6763, Best Val: 0.8507, Best Test: 0.6763
+Epoch 60, Time(s): 1.3947 9.8361, Best Val loss: 0.7537, Accs: Train: 0.8638, Val: 0.8540, Test: 0.6813, Best Val: 0.8540, Best Test: 0.6813
+Epoch 70, Time(s): 1.4168 9.9045, Best Val loss: 0.7599, Accs: Train: 0.8633, Val: 0.8540, Test: 0.6831, Best Val: 0.8540, Best Test: 0.6831
+Epoch 80, Time(s): 1.4169 10.6871, Best Val loss: 0.7262, Accs: Train: 0.8688, Val: 0.8607, Test: 0.6968, Best Val: 0.8607, Best Test: 0.6968
+Epoch 90, Time(s): 1.4032 10.9703, Best Val loss: 0.7252, Accs: Train: 0.8712, Val: 0.8625, Test: 0.7077, Best Val: 0.8625, Best Test: 0.7077
+Epoch 100, Time(s): 1.6565 11.1458, Best Val loss: 0.7252, Accs: Train: 0.8539, Val: 0.8432, Test: 0.6812, Best Val: 0.8625, Best Test: 0.7077
+Epoch 110, Time(s): 1.4524 11.2327, Best Val loss: 0.7252, Accs: Train: 0.8680, Val: 0.8574, Test: 0.6696, Best Val: 0.8625, Best Test: 0.7077
+Epoch 120, Time(s): 1.5813 11.3048, Best Val loss: 0.7252, Accs: Train: 0.8676, Val: 0.8553, Test: 0.7011, Best Val: 0.8625, Best Test: 0.7077
+Epoch 130, Time(s): 1.4638 11.1785, Best Val loss: 0.7252, Accs: Train: 0.8581, Val: 0.8479, Test: 0.6876, Best Val: 0.8625, Best Test: 0.7077
+Epoch 140, Time(s): 1.4409 9.7159, Best Val loss: 0.7252, Accs: Train: 0.8647, Val: 0.8574, Test: 0.6974, Best Val: 0.8625, Best Test: 0.7077
+Epoch 150, Time(s): 1.5191 10.8355, Best Val loss: 0.7252, Accs: Train: 0.8569, Val: 0.8443, Test: 0.6817, Best Val: 0.8625, Best Test: 0.7077
+Epoch 160, Time(s): 1.4592 11.2661, Best Val loss: 0.7252, Accs: Train: 0.8512, Val: 0.8394, Test: 0.6804, Best Val: 0.8625, Best Test: 0.7077
+Epoch 170, Time(s): 1.4572 11.0016, Best Val loss: 0.7252, Accs: Train: 0.7312, Val: 0.6992, Test: 0.5113, Best Val: 0.8625, Best Test: 0.7077
+Epoch 180, Time(s): 1.6496 10.7672, Best Val loss: 0.7252, Accs: Train: 0.8547, Val: 0.8372, Test: 0.6551, Best Val: 0.8625, Best Test: 0.7077
+Epoch 190, Time(s): 1.3672 10.0968, Best Val loss: 0.7252, Accs: Train: 0.8662, Val: 0.8573, Test: 0.6845, Best Val: 0.8625, Best Test: 0.7077
+Epoch 200, Time(s): 1.4636 11.4434, Best Val loss: 0.7252, Accs: Train: 0.8715, Val: 0.8613, Test: 0.6960, Best Val: 0.8625, Best Test: 0.7077
+Epoch 210, Time(s): 1.4930 10.4868, Best Val loss: 0.7252, Accs: Train: 0.8620, Val: 0.8533, Test: 0.6888, Best Val: 0.8625, Best Test: 0.7077
+Epoch 220, Time(s): 1.3958 9.7868, Best Val loss: 0.7252, Accs: Train: 0.8711, Val: 0.8607, Test: 0.6895, Best Val: 0.8625, Best Test: 0.7077
+Epoch 230, Time(s): 1.5528 11.1805, Best Val loss: 0.7252, Accs: Train: 0.8523, Val: 0.8336, Test: 0.6549, Best Val: 0.8625, Best Test: 0.7077
+Epoch 240, Time(s): 1.4759 11.0131, Best Val loss: 0.7252, Accs: Train: 0.8578, Val: 0.8405, Test: 0.6635, Best Val: 0.8625, Best Test: 0.7077
+Epoch 250, Time(s): 1.4861 9.9466, Best Val loss: 0.7252, Accs: Train: 0.5306, Val: 0.5142, Test: 0.4038, Best Val: 0.8625, Best Test: 0.7077
+Epoch 260, Time(s): 1.4274 9.7617, Best Val loss: 0.7252, Accs: Train: 0.8402, Val: 0.8190, Test: 0.6350, Best Val: 0.8625, Best Test: 0.7077
+Epoch 270, Time(s): 1.4101 10.8533, Best Val loss: 0.7252, Accs: Train: 0.8522, Val: 0.8419, Test: 0.6625, Best Val: 0.8625, Best Test: 0.7077
+Epoch 280, Time(s): 1.4805 9.8602, Best Val loss: 0.7252, Accs: Train: 0.8599, Val: 0.8517, Test: 0.6863, Best Val: 0.8625, Best Test: 0.7077
+Epoch 290, Time(s): 1.4104 10.3046, Best Val loss: 0.7252, Accs: Train: 0.8249, Val: 0.8065, Test: 0.6264, Best Val: 0.8625, Best Test: 0.7077
+Epoch 300, Time(s): 1.3451 10.6066, Best Val loss: 0.7252, Accs: Train: 0.8477, Val: 0.8414, Test: 0.6682, Best Val: 0.8625, Best Test: 0.7077
+Epoch 310, Time(s): 1.3584 9.8818, Best Val loss: 0.7252, Accs: Train: 0.5450, Val: 0.5334, Test: 0.4036, Best Val: 0.8625, Best Test: 0.7077
+Epoch 320, Time(s): 1.4513 11.2927, Best Val loss: 0.7252, Accs: Train: 0.8584, Val: 0.8510, Test: 0.6873, Best Val: 0.8625, Best Test: 0.7077
+Epoch 330, Time(s): 1.4569 9.9048, Best Val loss: 0.7252, Accs: Train: 0.7652, Val: 0.7476, Test: 0.5824, Best Val: 0.8625, Best Test: 0.7077
+Epoch 340, Time(s): 1.4622 9.6945, Best Val loss: 0.7252, Accs: Train: 0.6814, Val: 0.6677, Test: 0.5111, Best Val: 0.8625, Best Test: 0.7077
+Epoch 350, Time(s): 1.3225 9.7380, Best Val loss: 0.7252, Accs: Train: 0.8482, Val: 0.8412, Test: 0.6772, Best Val: 0.8625, Best Test: 0.7077
+Epoch 360, Time(s): 1.3688 9.7770, Best Val loss: 0.7252, Accs: Train: 0.8367, Val: 0.8307, Test: 0.6568, Best Val: 0.8625, Best Test: 0.7077
+Epoch 370, Time(s): 1.4115 9.8911, Best Val loss: 0.7252, Accs: Train: 0.3084, Val: 0.3084, Test: 0.2689, Best Val: 0.8625, Best Test: 0.7077
+Epoch 380, Time(s): 1.4318 10.3015, Best Val loss: 0.7252, Accs: Train: 0.8627, Val: 0.8546, Test: 0.6829, Best Val: 0.8625, Best Test: 0.7077
+Epoch 390, Time(s): 1.5225 9.6716, Best Val loss: 0.7252, Accs: Train: 0.7848, Val: 0.7582, Test: 0.5543, Best Val: 0.8625, Best Test: 0.7077
+Epoch 400, Time(s): 1.3923 9.7274, Best Val loss: 0.7252, Accs: Train: 0.8192, Val: 0.8112, Test: 0.6228, Best Val: 0.8625, Best Test: 0.7077
+Epoch 410, Time(s): 1.6534 10.9609, Best Val loss: 0.7252, Accs: Train: 0.3084, Val: 0.3083, Test: 0.2673, Best Val: 0.8625, Best Test: 0.7077
+Epoch 420, Time(s): 1.4122 10.9106, Best Val loss: 0.7252, Accs: Train: 0.3890, Val: 0.3858, Test: 0.3157, Best Val: 0.8625, Best Test: 0.7077
+Epoch 430, Time(s): 1.4462 9.5897, Best Val loss: 0.7252, Accs: Train: 0.8150, Val: 0.7967, Test: 0.6065, Best Val: 0.8625, Best Test: 0.7077
+Epoch 440, Time(s): 1.4012 9.7762, Best Val loss: 0.7252, Accs: Train: 0.8002, Val: 0.7892, Test: 0.6058, Best Val: 0.8625, Best Test: 0.7077
+Epoch 450, Time(s): 1.4555 10.9069, Best Val loss: 0.7252, Accs: Train: 0.3083, Val: 0.3077, Test: 0.2602, Best Val: 0.8625, Best Test: 0.7077
+Epoch 460, Time(s): 1.3614 9.7092, Best Val loss: 0.7252, Accs: Train: 0.8457, Val: 0.8381, Test: 0.6624, Best Val: 0.8625, Best Test: 0.7077
+Epoch 470, Time(s): 1.4249 9.9207, Best Val loss: 0.7252, Accs: Train: 0.7650, Val: 0.7385, Test: 0.5475, Best Val: 0.8625, Best Test: 0.7077
+Epoch 480, Time(s): 1.6421 11.1135, Best Val loss: 0.7252, Accs: Train: 0.4260, Val: 0.4255, Test: 0.3448, Best Val: 0.8625, Best Test: 0.7077
+Epoch 490, Time(s): 1.5621 10.9502, Best Val loss: 0.7252, Accs: Train: 0.5102, Val: 0.5038, Test: 0.3946, Best Val: 0.8625, Best Test: 0.7077
+Epoch 500, Time(s): 1.4890 9.9944, Best Val loss: 0.7252, Accs: Train: 0.4784, Val: 0.4705, Test: 0.3705, Best Val: 0.8625, Best Test: 0.7077
+Stage: 0, Best Epoch 90, Val 0.8625, Test 0.7077
+Traceback (most recent call last):
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/serialization.py", line 379, in save
+    _save(obj, opened_zipfile, pickle_module, pickle_protocol)
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/serialization.py", line 499, in _save
+    zip_file.write_record(name, storage.data_ptr(), num_bytes)
+OSError: [Errno 28] No space left on device
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "sagn.py", line 455, in <module>
+    main(args)
+  File "sagn.py", line 294, in main
+    torch.save(probs, new_probs_path)
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/serialization.py", line 380, in save
+    return
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/serialization.py", line 259, in __exit__
+    self.file_like.write_end_of_file()
+RuntimeError: [enforce fail at inline_container.cc:300] . unexpected pos 320 vs 240
+terminate called after throwing an instance of 'c10::Error'
+  what():  [enforce fail at inline_container.cc:300] . unexpected pos 320 vs 240
+frame #0: c10::ThrowEnforceNotMet(char const*, int, char const*, std::string const&, void const*) + 0x47 (0x7f6236455ae7 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libc10.so)
+frame #1: <unknown function> + 0x24a1d10 (0x7f6284023d10 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so)
+frame #2: <unknown function> + 0x249d2ec (0x7f628401f2ec in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so)
+frame #3: caffe2::serialize::PyTorchStreamWriter::writeRecord(std::string const&, void const*, unsigned long, bool) + 0xb5 (0x7f6284026f55 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so)
+frame #4: caffe2::serialize::PyTorchStreamWriter::writeEndOfFile() + 0x173 (0x7f6284027243 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so)
+frame #5: caffe2::serialize::PyTorchStreamWriter::~PyTorchStreamWriter() + 0x125 (0x7f62840274b5 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_cpu.so)
+frame #6: <unknown function> + 0xb34143 (0x7f628dd78143 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_python.so)
+frame #7: <unknown function> + 0x29dd10 (0x7f628d4e1d10 in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_python.so)
+frame #8: <unknown function> + 0x29ef7e (0x7f628d4e2f7e in /home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/lib/libtorch_python.so)
+<omitting python frames>
+frame #19: __libc_start_main + 0xf0 (0x7f62aa608840 in /lib/x86_64-linux-gnu/libc.so.6)
+
+Aborted (core dumped)

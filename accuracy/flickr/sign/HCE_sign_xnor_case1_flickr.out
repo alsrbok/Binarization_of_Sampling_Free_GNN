@@ -1,0 +1,386 @@
+Namespace(K=2, acc_loss='acc', aggr_gpu=-1, alpha=0.5, attn_drop=0.4, avoid_features=False, batch_size=128, chunks=1, data_dir='/home/data/pyg/', dataset='flickr', dropout=0.7, emb_path='/home/scx/NARS/', epoch_setting=[200], eval_batch_size=128, eval_every=10, example_subsets_path='/home/scx/NARS/sample_relation_subsets/examples', fixed_subsets=False, focal='first', gpu=0, inductive=True, input_drop=0.0, label_K=9, label_drop=0.5, label_mlp_layer=4, label_residual=False, load_embs=False, load_label_emb=False, lr=0.001, mag_emb=False, memory_efficient=False, mlp_layer=2, model='HCE_sign_xnor_case1', num_heads=1, num_hidden=512, num_runs=10, position_emb=False, pretrain_model='ComplEx', probs_dir='../intermediate_outputs', sample_size=8, seed=0, threshold=[0.5], use_labels=False, use_norm=True, warmup_stage=-1, weight_decay=0.0, weight_style='attention', zero_inits=True)
+----------------------------------------------------------------------------------------------------
+Run 0 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 4.0385 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 15.3804 4.7773, Best Val loss: 2.7195, Accs: Train: 0.4357, Val: 0.4329, Test: 0.4346, Best Val: 0.4329, Best Test: 0.4346
+LR: 1.000e-03/ Epoch 20, Time(s): 12.9093 4.7065, Best Val loss: 2.7890, Accs: Train: 0.4628, Val: 0.4607, Test: 0.4606, Best Val: 0.4607, Best Test: 0.4606
+LR: 1.000e-03/ Epoch 30, Time(s): 13.0162 4.7540, Best Val loss: 2.7144, Accs: Train: 0.4617, Val: 0.4614, Test: 0.4621, Best Val: 0.4614, Best Test: 0.4621
+LR: 1.000e-03/ Epoch 40, Time(s): 12.9662 4.7516, Best Val loss: 2.6961, Accs: Train: 0.4671, Val: 0.4634, Test: 0.4651, Best Val: 0.4634, Best Test: 0.4651
+LR: 1.000e-03/ Epoch 50, Time(s): 12.6202 4.7451, Best Val loss: 2.6961, Accs: Train: 0.4658, Val: 0.4600, Test: 0.4626, Best Val: 0.4634, Best Test: 0.4651
+LR: 1.000e-03/ Epoch 60, Time(s): 12.3503 4.7112, Best Val loss: 2.5818, Accs: Train: 0.4681, Val: 0.4638, Test: 0.4654, Best Val: 0.4638, Best Test: 0.4654
+LR: 1.000e-03/ Epoch 70, Time(s): 14.9290 4.7779, Best Val loss: 2.5373, Accs: Train: 0.4787, Val: 0.4710, Test: 0.4735, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 80, Time(s): 13.0384 4.7926, Best Val loss: 2.5373, Accs: Train: 0.4739, Val: 0.4679, Test: 0.4666, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 90, Time(s): 12.8505 4.8116, Best Val loss: 2.5373, Accs: Train: 0.4706, Val: 0.4659, Test: 0.4656, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 100, Time(s): 13.1312 4.7616, Best Val loss: 2.5373, Accs: Train: 0.4730, Val: 0.4658, Test: 0.4640, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 110, Time(s): 12.9514 4.7730, Best Val loss: 2.5373, Accs: Train: 0.4727, Val: 0.4652, Test: 0.4667, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 120, Time(s): 14.7623 4.7119, Best Val loss: 2.5373, Accs: Train: 0.4705, Val: 0.4647, Test: 0.4648, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 130, Time(s): 13.7167 4.7419, Best Val loss: 2.5373, Accs: Train: 0.4696, Val: 0.4634, Test: 0.4655, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 140, Time(s): 13.1372 4.9060, Best Val loss: 2.5373, Accs: Train: 0.4698, Val: 0.4628, Test: 0.4641, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 150, Time(s): 12.9062 4.8340, Best Val loss: 2.5373, Accs: Train: 0.4699, Val: 0.4613, Test: 0.4622, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 160, Time(s): 12.6823 4.8729, Best Val loss: 2.5373, Accs: Train: 0.4677, Val: 0.4636, Test: 0.4639, Best Val: 0.4710, Best Test: 0.4735
+LR: 1.000e-03/ Epoch 170, Time(s): 12.8552 4.8477, Best Val loss: 2.7019, Accs: Train: 0.4751, Val: 0.4715, Test: 0.4717, Best Val: 0.4715, Best Test: 0.4717
+LR: 1.000e-03/ Epoch 180, Time(s): 14.9854 4.7577, Best Val loss: 2.5536, Accs: Train: 0.4800, Val: 0.4867, Test: 0.4885, Best Val: 0.4867, Best Test: 0.4885
+LR: 1.000e-03/ Epoch 190, Time(s): 12.8639 4.7472, Best Val loss: 2.5536, Accs: Train: 0.4789, Val: 0.4835, Test: 0.4855, Best Val: 0.4867, Best Test: 0.4885
+LR: 1.000e-03/ Epoch 200, Time(s): 13.1080 4.6880, Best Val loss: 2.5536, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4867, Best Test: 0.4885
+Stage: 0, Best Epoch 180, Val 0.4867, Test 0.4885
+----------------------------------------------------------------------------------------------------
+Run 1 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9127 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 13.0907 4.7130, Best Val loss: 2.8456, Accs: Train: 0.4732, Val: 0.4820, Test: 0.4832, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 20, Time(s): 13.3544 4.7903, Best Val loss: 2.8456, Accs: Train: 0.4715, Val: 0.4779, Test: 0.4771, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 30, Time(s): 13.0362 4.8280, Best Val loss: 2.8456, Accs: Train: 0.4578, Val: 0.4565, Test: 0.4590, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 40, Time(s): 15.0920 4.7201, Best Val loss: 2.8456, Accs: Train: 0.4558, Val: 0.4517, Test: 0.4529, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 50, Time(s): 12.8949 4.8425, Best Val loss: 2.8456, Accs: Train: 0.4629, Val: 0.4591, Test: 0.4615, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 60, Time(s): 12.9497 4.7684, Best Val loss: 2.8456, Accs: Train: 0.4446, Val: 0.4389, Test: 0.4372, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 70, Time(s): 12.8022 4.7364, Best Val loss: 2.8456, Accs: Train: 0.4614, Val: 0.4555, Test: 0.4575, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 80, Time(s): 13.0073 4.8082, Best Val loss: 2.8456, Accs: Train: 0.4633, Val: 0.4593, Test: 0.4592, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 90, Time(s): 14.6239 4.7233, Best Val loss: 2.8456, Accs: Train: 0.4652, Val: 0.4619, Test: 0.4603, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 100, Time(s): 12.8289 4.7415, Best Val loss: 2.8456, Accs: Train: 0.4642, Val: 0.4574, Test: 0.4591, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 110, Time(s): 13.1840 4.7299, Best Val loss: 2.8456, Accs: Train: 0.4683, Val: 0.4581, Test: 0.4624, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 120, Time(s): 12.9482 4.7585, Best Val loss: 2.8456, Accs: Train: 0.4646, Val: 0.4614, Test: 0.4629, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 130, Time(s): 12.8178 4.7345, Best Val loss: 2.8456, Accs: Train: 0.4679, Val: 0.4611, Test: 0.4642, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 140, Time(s): 13.1160 4.7321, Best Val loss: 2.8456, Accs: Train: 0.4658, Val: 0.4616, Test: 0.4623, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 150, Time(s): 14.9828 4.7529, Best Val loss: 2.8456, Accs: Train: 0.4696, Val: 0.4628, Test: 0.4613, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 160, Time(s): 12.3660 4.7443, Best Val loss: 2.8456, Accs: Train: 0.4665, Val: 0.4605, Test: 0.4615, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 170, Time(s): 12.9609 4.6945, Best Val loss: 2.8456, Accs: Train: 0.4645, Val: 0.4599, Test: 0.4582, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 180, Time(s): 12.6652 4.7102, Best Val loss: 2.8456, Accs: Train: 0.4603, Val: 0.4521, Test: 0.4513, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 190, Time(s): 12.6870 4.7500, Best Val loss: 2.8456, Accs: Train: 0.4698, Val: 0.4611, Test: 0.4628, Best Val: 0.4820, Best Test: 0.4832
+LR: 1.000e-03/ Epoch 200, Time(s): 15.0196 4.7594, Best Val loss: 2.8456, Accs: Train: 0.4666, Val: 0.4611, Test: 0.4630, Best Val: 0.4820, Best Test: 0.4832
+Stage: 0, Best Epoch 10, Val 0.4820, Test 0.4832
+----------------------------------------------------------------------------------------------------
+Run 2 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9161 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 13.1171 4.7070, Best Val loss: 2.5761, Accs: Train: 0.4522, Val: 0.4499, Test: 0.4495, Best Val: 0.4499, Best Test: 0.4495
+LR: 1.000e-03/ Epoch 20, Time(s): 12.8949 4.7082, Best Val loss: 2.7142, Accs: Train: 0.4601, Val: 0.4608, Test: 0.4612, Best Val: 0.4608, Best Test: 0.4612
+LR: 1.000e-03/ Epoch 30, Time(s): 12.5684 4.7442, Best Val loss: 2.7142, Accs: Train: 0.4628, Val: 0.4548, Test: 0.4578, Best Val: 0.4608, Best Test: 0.4612
+LR: 1.000e-03/ Epoch 40, Time(s): 12.6564 4.7030, Best Val loss: 2.6789, Accs: Train: 0.4664, Val: 0.4613, Test: 0.4612, Best Val: 0.4613, Best Test: 0.4612
+LR: 1.000e-03/ Epoch 50, Time(s): 12.5704 4.8389, Best Val loss: 2.5496, Accs: Train: 0.4688, Val: 0.4628, Test: 0.4648, Best Val: 0.4628, Best Test: 0.4648
+LR: 1.000e-03/ Epoch 60, Time(s): 14.8417 4.6746, Best Val loss: 2.5496, Accs: Train: 0.4630, Val: 0.4559, Test: 0.4574, Best Val: 0.4628, Best Test: 0.4648
+LR: 1.000e-03/ Epoch 70, Time(s): 13.0364 4.6748, Best Val loss: 2.7164, Accs: Train: 0.4707, Val: 0.4644, Test: 0.4674, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 80, Time(s): 12.6035 4.7590, Best Val loss: 2.7164, Accs: Train: 0.4661, Val: 0.4584, Test: 0.4626, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 90, Time(s): 12.8295 4.8540, Best Val loss: 2.7164, Accs: Train: 0.4648, Val: 0.4550, Test: 0.4592, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 100, Time(s): 12.8141 4.8369, Best Val loss: 2.7164, Accs: Train: 0.4717, Val: 0.4636, Test: 0.4635, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 110, Time(s): 15.1366 4.7071, Best Val loss: 2.7164, Accs: Train: 0.4685, Val: 0.4615, Test: 0.4628, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 120, Time(s): 13.1892 4.7583, Best Val loss: 2.7164, Accs: Train: 0.4697, Val: 0.4609, Test: 0.4612, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 130, Time(s): 13.2339 4.7661, Best Val loss: 2.7164, Accs: Train: 0.4713, Val: 0.4636, Test: 0.4645, Best Val: 0.4644, Best Test: 0.4674
+LR: 1.000e-03/ Epoch 140, Time(s): 13.0142 4.7330, Best Val loss: 2.6463, Accs: Train: 0.4731, Val: 0.4680, Test: 0.4693, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 150, Time(s): 12.9217 4.7077, Best Val loss: 2.6463, Accs: Train: 0.4697, Val: 0.4608, Test: 0.4625, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 160, Time(s): 12.6554 4.6617, Best Val loss: 2.6463, Accs: Train: 0.4713, Val: 0.4619, Test: 0.4646, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 170, Time(s): 14.6307 4.7043, Best Val loss: 2.6463, Accs: Train: 0.4706, Val: 0.4606, Test: 0.4648, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 180, Time(s): 12.5887 4.7565, Best Val loss: 2.6463, Accs: Train: 0.4698, Val: 0.4605, Test: 0.4634, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 190, Time(s): 13.2077 4.7681, Best Val loss: 2.6463, Accs: Train: 0.4697, Val: 0.4600, Test: 0.4611, Best Val: 0.4680, Best Test: 0.4693
+LR: 1.000e-03/ Epoch 200, Time(s): 12.6765 4.7031, Best Val loss: 2.6463, Accs: Train: 0.4711, Val: 0.4616, Test: 0.4651, Best Val: 0.4680, Best Test: 0.4693
+Stage: 0, Best Epoch 140, Val 0.4680, Test 0.4693
+----------------------------------------------------------------------------------------------------
+Run 3 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9526 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 12.6007 4.7422, Best Val loss: 2.7812, Accs: Train: 0.4557, Val: 0.4481, Test: 0.4504, Best Val: 0.4481, Best Test: 0.4504
+LR: 1.000e-03/ Epoch 20, Time(s): 14.7460 4.8371, Best Val loss: 2.6713, Accs: Train: 0.4653, Val: 0.4629, Test: 0.4652, Best Val: 0.4629, Best Test: 0.4652
+LR: 1.000e-03/ Epoch 30, Time(s): 12.8865 4.6938, Best Val loss: 2.5882, Accs: Train: 0.4678, Val: 0.4723, Test: 0.4741, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 40, Time(s): 12.8620 4.7568, Best Val loss: 2.5882, Accs: Train: 0.4625, Val: 0.4591, Test: 0.4619, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 50, Time(s): 12.7500 4.7798, Best Val loss: 2.5882, Accs: Train: 0.4685, Val: 0.4650, Test: 0.4626, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 60, Time(s): 13.1463 4.7493, Best Val loss: 2.5882, Accs: Train: 0.4750, Val: 0.4703, Test: 0.4717, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 70, Time(s): 12.8874 4.7629, Best Val loss: 2.5882, Accs: Train: 0.4765, Val: 0.4643, Test: 0.4669, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 80, Time(s): 14.7020 4.7219, Best Val loss: 2.5882, Accs: Train: 0.4699, Val: 0.4646, Test: 0.4663, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 90, Time(s): 12.4262 4.7190, Best Val loss: 2.5882, Accs: Train: 0.4682, Val: 0.4637, Test: 0.4632, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 100, Time(s): 12.7563 4.7878, Best Val loss: 2.5882, Accs: Train: 0.4739, Val: 0.4670, Test: 0.4658, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 110, Time(s): 12.7566 4.7153, Best Val loss: 2.5882, Accs: Train: 0.4677, Val: 0.4591, Test: 0.4616, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 120, Time(s): 12.6722 4.7272, Best Val loss: 2.5882, Accs: Train: 0.4634, Val: 0.4594, Test: 0.4603, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 130, Time(s): 13.0573 4.7910, Best Val loss: 2.5882, Accs: Train: 0.4694, Val: 0.4617, Test: 0.4615, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 140, Time(s): 14.9832 4.6614, Best Val loss: 2.5882, Accs: Train: 0.4710, Val: 0.4624, Test: 0.4639, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 150, Time(s): 12.7361 4.7418, Best Val loss: 2.5882, Accs: Train: 0.4697, Val: 0.4620, Test: 0.4601, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 160, Time(s): 12.8956 4.6841, Best Val loss: 2.5882, Accs: Train: 0.4628, Val: 0.4531, Test: 0.4565, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 170, Time(s): 13.0755 4.8088, Best Val loss: 2.5882, Accs: Train: 0.4712, Val: 0.4630, Test: 0.4648, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 180, Time(s): 12.7218 4.7169, Best Val loss: 2.5882, Accs: Train: 0.4683, Val: 0.4624, Test: 0.4633, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 190, Time(s): 14.8440 4.7273, Best Val loss: 2.5882, Accs: Train: 0.4729, Val: 0.4634, Test: 0.4662, Best Val: 0.4723, Best Test: 0.4741
+LR: 1.000e-03/ Epoch 200, Time(s): 12.6170 4.8375, Best Val loss: 2.5882, Accs: Train: 0.4658, Val: 0.4577, Test: 0.4608, Best Val: 0.4723, Best Test: 0.4741
+Stage: 0, Best Epoch 30, Val 0.4723, Test 0.4741
+----------------------------------------------------------------------------------------------------
+Run 4 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9948 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 12.8617 4.7715, Best Val loss: 2.7786, Accs: Train: 0.4489, Val: 0.4473, Test: 0.4501, Best Val: 0.4473, Best Test: 0.4501
+LR: 1.000e-03/ Epoch 20, Time(s): 12.9519 4.8157, Best Val loss: 2.6889, Accs: Train: 0.4596, Val: 0.4601, Test: 0.4617, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 30, Time(s): 13.1993 4.7625, Best Val loss: 2.6889, Accs: Train: 0.4591, Val: 0.4548, Test: 0.4552, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 40, Time(s): 12.7149 4.8307, Best Val loss: 2.6889, Accs: Train: 0.4582, Val: 0.4533, Test: 0.4518, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 50, Time(s): 15.4275 4.7313, Best Val loss: 2.6889, Accs: Train: 0.4659, Val: 0.4587, Test: 0.4608, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 60, Time(s): 12.7619 4.6860, Best Val loss: 2.6889, Accs: Train: 0.4597, Val: 0.4520, Test: 0.4533, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 70, Time(s): 12.9467 4.7000, Best Val loss: 2.6889, Accs: Train: 0.4560, Val: 0.4482, Test: 0.4488, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 80, Time(s): 13.2957 4.7114, Best Val loss: 2.6889, Accs: Train: 0.0709, Val: 0.0721, Test: 0.0735, Best Val: 0.4601, Best Test: 0.4617
+LR: 1.000e-03/ Epoch 90, Time(s): 12.9516 4.6986, Best Val loss: 2.7130, Accs: Train: 0.4716, Val: 0.4613, Test: 0.4614, Best Val: 0.4613, Best Test: 0.4614
+LR: 1.000e-03/ Epoch 100, Time(s): 14.9251 4.7200, Best Val loss: 2.7130, Accs: Train: 0.4649, Val: 0.4585, Test: 0.4583, Best Val: 0.4613, Best Test: 0.4614
+LR: 1.000e-03/ Epoch 110, Time(s): 12.9074 4.7438, Best Val loss: 2.6370, Accs: Train: 0.4655, Val: 0.4620, Test: 0.4616, Best Val: 0.4620, Best Test: 0.4616
+LR: 1.000e-03/ Epoch 120, Time(s): 12.5753 4.7889, Best Val loss: 2.6370, Accs: Train: 0.4508, Val: 0.4411, Test: 0.4419, Best Val: 0.4620, Best Test: 0.4616
+LR: 1.000e-03/ Epoch 130, Time(s): 13.1863 4.7131, Best Val loss: 2.8163, Accs: Train: 0.4755, Val: 0.4650, Test: 0.4658, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 140, Time(s): 12.7755 4.7036, Best Val loss: 2.8163, Accs: Train: 0.4616, Val: 0.4580, Test: 0.4576, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 150, Time(s): 13.1663 4.8112, Best Val loss: 2.8163, Accs: Train: 0.4690, Val: 0.4638, Test: 0.4632, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 160, Time(s): 15.0366 4.7497, Best Val loss: 2.8163, Accs: Train: 0.4630, Val: 0.4589, Test: 0.4596, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 170, Time(s): 12.6740 4.7404, Best Val loss: 2.8163, Accs: Train: 0.4620, Val: 0.4557, Test: 0.4549, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 180, Time(s): 12.8876 4.7349, Best Val loss: 2.8163, Accs: Train: 0.4684, Val: 0.4632, Test: 0.4636, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 190, Time(s): 13.1413 4.7939, Best Val loss: 2.8163, Accs: Train: 0.4672, Val: 0.4625, Test: 0.4590, Best Val: 0.4650, Best Test: 0.4658
+LR: 1.000e-03/ Epoch 200, Time(s): 13.3275 4.7272, Best Val loss: 2.8163, Accs: Train: 0.4682, Val: 0.4628, Test: 0.4630, Best Val: 0.4650, Best Test: 0.4658
+Stage: 0, Best Epoch 130, Val 0.4650, Test 0.4658
+----------------------------------------------------------------------------------------------------
+Run 5 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 1.0002 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 15.1300 4.6851, Best Val loss: 2.9444, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4239, Best Test: 0.4234
+LR: 1.000e-03/ Epoch 20, Time(s): 13.1229 4.7316, Best Val loss: 2.9444, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4239, Best Test: 0.4234
+LR: 1.000e-03/ Epoch 30, Time(s): 12.9023 4.7065, Best Val loss: 2.9579, Accs: Train: 0.4263, Val: 0.4257, Test: 0.4258, Best Val: 0.4257, Best Test: 0.4258
+LR: 1.000e-03/ Epoch 40, Time(s): 12.8754 4.8897, Best Val loss: 2.8063, Accs: Train: 0.4443, Val: 0.4443, Test: 0.4444, Best Val: 0.4443, Best Test: 0.4444
+LR: 1.000e-03/ Epoch 50, Time(s): 12.7487 4.7365, Best Val loss: 2.6542, Accs: Train: 0.4592, Val: 0.4585, Test: 0.4570, Best Val: 0.4585, Best Test: 0.4570
+LR: 1.000e-03/ Epoch 60, Time(s): 12.7007 4.7146, Best Val loss: 2.6542, Accs: Train: 0.4554, Val: 0.4533, Test: 0.4554, Best Val: 0.4585, Best Test: 0.4570
+LR: 1.000e-03/ Epoch 70, Time(s): 14.4936 4.8043, Best Val loss: 2.8037, Accs: Train: 0.4620, Val: 0.4593, Test: 0.4584, Best Val: 0.4593, Best Test: 0.4584
+LR: 1.000e-03/ Epoch 80, Time(s): 12.5802 4.7828, Best Val loss: 2.8860, Accs: Train: 0.4657, Val: 0.4620, Test: 0.4638, Best Val: 0.4620, Best Test: 0.4638
+LR: 1.000e-03/ Epoch 90, Time(s): 12.4898 4.7658, Best Val loss: 2.5765, Accs: Train: 0.4647, Val: 0.4626, Test: 0.4622, Best Val: 0.4626, Best Test: 0.4622
+LR: 1.000e-03/ Epoch 100, Time(s): 13.2750 4.7091, Best Val loss: 2.5922, Accs: Train: 0.4684, Val: 0.4633, Test: 0.4643, Best Val: 0.4633, Best Test: 0.4643
+LR: 1.000e-03/ Epoch 110, Time(s): 12.8630 4.7526, Best Val loss: 2.5922, Accs: Train: 0.4654, Val: 0.4589, Test: 0.4589, Best Val: 0.4633, Best Test: 0.4643
+LR: 1.000e-03/ Epoch 120, Time(s): 14.9518 4.7548, Best Val loss: 2.5922, Accs: Train: 0.4660, Val: 0.4616, Test: 0.4616, Best Val: 0.4633, Best Test: 0.4643
+LR: 1.000e-03/ Epoch 130, Time(s): 13.7832 4.7722, Best Val loss: 2.6606, Accs: Train: 0.4773, Val: 0.4739, Test: 0.4762, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 140, Time(s): 12.8822 4.8207, Best Val loss: 2.6606, Accs: Train: 0.4739, Val: 0.4671, Test: 0.4670, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 150, Time(s): 12.9311 4.6868, Best Val loss: 2.6606, Accs: Train: 0.4657, Val: 0.4582, Test: 0.4606, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 160, Time(s): 12.6850 4.7216, Best Val loss: 2.6606, Accs: Train: 0.4688, Val: 0.4628, Test: 0.4611, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 170, Time(s): 12.5710 4.7909, Best Val loss: 2.6606, Accs: Train: 0.4706, Val: 0.4627, Test: 0.4637, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 180, Time(s): 14.8561 4.7569, Best Val loss: 2.6606, Accs: Train: 0.4685, Val: 0.4637, Test: 0.4620, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 190, Time(s): 12.8385 4.7450, Best Val loss: 2.6606, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4739, Best Test: 0.4762
+LR: 1.000e-03/ Epoch 200, Time(s): 12.6905 4.7302, Best Val loss: 2.6606, Accs: Train: 0.4666, Val: 0.4600, Test: 0.4615, Best Val: 0.4739, Best Test: 0.4762
+Stage: 0, Best Epoch 130, Val 0.4739, Test 0.4762
+----------------------------------------------------------------------------------------------------
+Run 6 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9807 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 13.2027 4.8080, Best Val loss: 2.5173, Accs: Train: 0.4453, Val: 0.4415, Test: 0.4388, Best Val: 0.4415, Best Test: 0.4388
+LR: 1.000e-03/ Epoch 20, Time(s): 12.6831 4.7828, Best Val loss: 2.7053, Accs: Train: 0.4665, Val: 0.4637, Test: 0.4639, Best Val: 0.4637, Best Test: 0.4639
+LR: 1.000e-03/ Epoch 30, Time(s): 13.0600 4.7306, Best Val loss: 2.7053, Accs: Train: 0.4667, Val: 0.4637, Test: 0.4620, Best Val: 0.4637, Best Test: 0.4639
+LR: 1.000e-03/ Epoch 40, Time(s): 15.4650 4.7076, Best Val loss: 2.7053, Accs: Train: 0.4676, Val: 0.4630, Test: 0.4623, Best Val: 0.4637, Best Test: 0.4639
+LR: 1.000e-03/ Epoch 50, Time(s): 12.5406 4.8248, Best Val loss: 2.7053, Accs: Train: 0.4697, Val: 0.4637, Test: 0.4647, Best Val: 0.4637, Best Test: 0.4639
+LR: 1.000e-03/ Epoch 60, Time(s): 13.0092 4.7656, Best Val loss: 2.6997, Accs: Train: 0.4700, Val: 0.4641, Test: 0.4642, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 70, Time(s): 12.9115 4.7076, Best Val loss: 2.6997, Accs: Train: 0.4703, Val: 0.4603, Test: 0.4625, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 80, Time(s): 12.6091 4.6941, Best Val loss: 2.6997, Accs: Train: 0.4661, Val: 0.4583, Test: 0.4600, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 90, Time(s): 15.0792 4.7313, Best Val loss: 2.6997, Accs: Train: 0.4630, Val: 0.4544, Test: 0.4578, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 100, Time(s): 13.1523 4.7840, Best Val loss: 2.6997, Accs: Train: 0.4663, Val: 0.4566, Test: 0.4598, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 110, Time(s): 12.7587 4.7487, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 120, Time(s): 12.9231 4.7624, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 130, Time(s): 12.8560 4.6943, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 140, Time(s): 12.8814 4.7805, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 150, Time(s): 14.5478 4.7901, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 160, Time(s): 12.7619 4.8058, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 170, Time(s): 12.8749 4.7449, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 180, Time(s): 12.8567 4.7435, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 190, Time(s): 12.8430 4.6948, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+LR: 1.000e-03/ Epoch 200, Time(s): 14.5644 4.7780, Best Val loss: 2.6997, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4641, Best Test: 0.4642
+Stage: 0, Best Epoch 60, Val 0.4641, Test 0.4642
+----------------------------------------------------------------------------------------------------
+Run 7 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.9159 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 13.1471 4.6824, Best Val loss: 2.8002, Accs: Train: 0.4468, Val: 0.4414, Test: 0.4439, Best Val: 0.4414, Best Test: 0.4439
+LR: 1.000e-03/ Epoch 20, Time(s): 12.7600 4.7308, Best Val loss: 2.7775, Accs: Train: 0.4595, Val: 0.4558, Test: 0.4547, Best Val: 0.4558, Best Test: 0.4547
+LR: 1.000e-03/ Epoch 30, Time(s): 12.7512 4.7424, Best Val loss: 2.8030, Accs: Train: 0.4835, Val: 0.4906, Test: 0.4944, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 40, Time(s): 12.8328 4.7579, Best Val loss: 2.8030, Accs: Train: 0.4611, Val: 0.4603, Test: 0.4603, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 50, Time(s): 12.8082 4.7813, Best Val loss: 2.8030, Accs: Train: 0.4523, Val: 0.4449, Test: 0.4424, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 60, Time(s): 14.9671 4.8192, Best Val loss: 2.8030, Accs: Train: 0.4627, Val: 0.4665, Test: 0.4650, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 70, Time(s): 13.0596 4.8335, Best Val loss: 2.8030, Accs: Train: 0.4661, Val: 0.4645, Test: 0.4644, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 80, Time(s): 12.9676 4.6586, Best Val loss: 2.8030, Accs: Train: 0.4604, Val: 0.4606, Test: 0.4590, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 90, Time(s): 12.7606 4.7303, Best Val loss: 2.8030, Accs: Train: 0.4657, Val: 0.4584, Test: 0.4612, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 100, Time(s): 12.9329 4.7994, Best Val loss: 2.8030, Accs: Train: 0.4705, Val: 0.4630, Test: 0.4647, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 110, Time(s): 13.1891 4.8379, Best Val loss: 2.8030, Accs: Train: 0.4702, Val: 0.4744, Test: 0.4743, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 120, Time(s): 14.7929 4.8413, Best Val loss: 2.8030, Accs: Train: 0.4663, Val: 0.4607, Test: 0.4625, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 130, Time(s): 13.3081 4.8639, Best Val loss: 2.8030, Accs: Train: 0.4631, Val: 0.4637, Test: 0.4601, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 140, Time(s): 12.6691 4.8150, Best Val loss: 2.8030, Accs: Train: 0.4632, Val: 0.4587, Test: 0.4561, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 150, Time(s): 12.7215 4.8116, Best Val loss: 2.8030, Accs: Train: 0.4656, Val: 0.4600, Test: 0.4604, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 160, Time(s): 12.6560 4.7372, Best Val loss: 2.8030, Accs: Train: 0.4216, Val: 0.4239, Test: 0.4234, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 170, Time(s): 15.2467 4.7594, Best Val loss: 2.8030, Accs: Train: 0.2856, Val: 0.2883, Test: 0.2896, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 180, Time(s): 12.6330 4.7745, Best Val loss: 2.8030, Accs: Train: 0.4579, Val: 0.4515, Test: 0.4522, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 190, Time(s): 12.6877 4.8145, Best Val loss: 2.8030, Accs: Train: 0.4517, Val: 0.4510, Test: 0.4504, Best Val: 0.4906, Best Test: 0.4944
+LR: 1.000e-03/ Epoch 200, Time(s): 13.1657 4.7381, Best Val loss: 2.8030, Accs: Train: 0.4584, Val: 0.4550, Test: 0.4539, Best Val: 0.4906, Best Test: 0.4944
+Stage: 0, Best Epoch 30, Val 0.4906, Test 0.4944
+----------------------------------------------------------------------------------------------------
+Run 8 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.8990 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 13.0131 4.7351, Best Val loss: 2.7649, Accs: Train: 0.4707, Val: 0.4709, Test: 0.4724, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 20, Time(s): 12.9953 4.8566, Best Val loss: 2.7649, Accs: Train: 0.4618, Val: 0.4572, Test: 0.4610, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 30, Time(s): 14.4990 4.7734, Best Val loss: 2.7649, Accs: Train: 0.4660, Val: 0.4626, Test: 0.4620, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 40, Time(s): 12.9622 4.7322, Best Val loss: 2.7649, Accs: Train: 0.4674, Val: 0.4628, Test: 0.4626, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 50, Time(s): 12.7083 4.7788, Best Val loss: 2.7649, Accs: Train: 0.4679, Val: 0.4624, Test: 0.4633, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 60, Time(s): 12.6361 4.7405, Best Val loss: 2.7649, Accs: Train: 0.4686, Val: 0.4662, Test: 0.4646, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 70, Time(s): 12.5212 4.7516, Best Val loss: 2.7649, Accs: Train: 0.4694, Val: 0.4636, Test: 0.4631, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 80, Time(s): 14.2461 4.7222, Best Val loss: 2.7649, Accs: Train: 0.4634, Val: 0.4594, Test: 0.4588, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 90, Time(s): 14.2760 4.6841, Best Val loss: 2.7649, Accs: Train: 0.4530, Val: 0.4512, Test: 0.4503, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 100, Time(s): 12.7020 4.7327, Best Val loss: 2.7649, Accs: Train: 0.4670, Val: 0.4618, Test: 0.4617, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 110, Time(s): 13.0913 4.7154, Best Val loss: 2.7649, Accs: Train: 0.4676, Val: 0.4626, Test: 0.4640, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 120, Time(s): 12.6007 4.6779, Best Val loss: 2.7649, Accs: Train: 0.4598, Val: 0.4564, Test: 0.4538, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 130, Time(s): 12.4831 4.7889, Best Val loss: 2.7649, Accs: Train: 0.4672, Val: 0.4610, Test: 0.4615, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 140, Time(s): 15.1119 4.6870, Best Val loss: 2.7649, Accs: Train: 0.4648, Val: 0.4575, Test: 0.4575, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 150, Time(s): 12.9980 4.6675, Best Val loss: 2.7649, Accs: Train: 0.4698, Val: 0.4626, Test: 0.4632, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 160, Time(s): 12.8976 4.7723, Best Val loss: 2.7649, Accs: Train: 0.4685, Val: 0.4613, Test: 0.4619, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 170, Time(s): 12.7623 4.6758, Best Val loss: 2.7649, Accs: Train: 0.4709, Val: 0.4634, Test: 0.4632, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 180, Time(s): 12.5536 4.7584, Best Val loss: 2.7649, Accs: Train: 0.4692, Val: 0.4639, Test: 0.4600, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 190, Time(s): 12.7160 4.7274, Best Val loss: 2.7649, Accs: Train: 0.4706, Val: 0.4637, Test: 0.4628, Best Val: 0.4709, Best Test: 0.4724
+LR: 1.000e-03/ Epoch 200, Time(s): 15.1566 4.7155, Best Val loss: 2.7649, Accs: Train: 0.4724, Val: 0.4650, Test: 0.4612, Best Val: 0.4709, Best Test: 0.4724
+Stage: 0, Best Epoch 10, Val 0.4709, Test 0.4724
+----------------------------------------------------------------------------------------------------
+Run 9 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 89250
+# Edges: 899756
+# Train: 44625
+# Val: 22312
+# Test: 22313
+# Classes: 7
+in_feats: 500
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 0.8855 s
+# Params: 7023508
+LR: 1.000e-03/ Epoch 10, Time(s): 12.6285 4.7987, Best Val loss: 2.8140, Accs: Train: 0.4788, Val: 0.4968, Test: 0.4961, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 20, Time(s): 13.1651 4.7284, Best Val loss: 2.8140, Accs: Train: 0.4437, Val: 0.4440, Test: 0.4457, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 30, Time(s): 13.1489 4.8007, Best Val loss: 2.8140, Accs: Train: 0.4856, Val: 0.4929, Test: 0.4963, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 40, Time(s): 12.8739 4.7792, Best Val loss: 2.8140, Accs: Train: 0.4621, Val: 0.4600, Test: 0.4601, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 50, Time(s): 15.1020 4.7171, Best Val loss: 2.8140, Accs: Train: 0.4669, Val: 0.4628, Test: 0.4617, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 60, Time(s): 12.7164 4.6772, Best Val loss: 2.8140, Accs: Train: 0.4663, Val: 0.4644, Test: 0.4637, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 70, Time(s): 12.5936 4.7380, Best Val loss: 2.8140, Accs: Train: 0.4674, Val: 0.4635, Test: 0.4641, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 80, Time(s): 13.0481 4.7026, Best Val loss: 2.8140, Accs: Train: 0.4654, Val: 0.4644, Test: 0.4643, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 90, Time(s): 13.1080 4.8047, Best Val loss: 2.8140, Accs: Train: 0.4679, Val: 0.4634, Test: 0.4624, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 100, Time(s): 12.9749 4.6996, Best Val loss: 2.8140, Accs: Train: 0.4681, Val: 0.4637, Test: 0.4619, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 110, Time(s): 15.3492 4.7082, Best Val loss: 2.8140, Accs: Train: 0.4685, Val: 0.4640, Test: 0.4635, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 120, Time(s): 12.8554 4.7380, Best Val loss: 2.8140, Accs: Train: 0.4688, Val: 0.4635, Test: 0.4626, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 130, Time(s): 13.0853 4.7368, Best Val loss: 2.8140, Accs: Train: 0.4693, Val: 0.4657, Test: 0.4617, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 140, Time(s): 12.6354 4.7039, Best Val loss: 2.8140, Accs: Train: 0.4681, Val: 0.4646, Test: 0.4637, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 150, Time(s): 12.6123 4.7222, Best Val loss: 2.8140, Accs: Train: 0.4702, Val: 0.4645, Test: 0.4591, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 160, Time(s): 14.2922 4.7442, Best Val loss: 2.8140, Accs: Train: 0.4693, Val: 0.4647, Test: 0.4639, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 170, Time(s): 14.5413 4.7243, Best Val loss: 2.8140, Accs: Train: 0.4682, Val: 0.4613, Test: 0.4621, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 180, Time(s): 12.7236 4.7766, Best Val loss: 2.8140, Accs: Train: 0.4654, Val: 0.4609, Test: 0.4614, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 190, Time(s): 12.7124 4.6989, Best Val loss: 2.8140, Accs: Train: 0.4672, Val: 0.4624, Test: 0.4631, Best Val: 0.4968, Best Test: 0.4961
+LR: 1.000e-03/ Epoch 200, Time(s): 12.6076 4.7561, Best Val loss: 2.8140, Accs: Train: 0.4697, Val: 0.4624, Test: 0.4645, Best Val: 0.4968, Best Test: 0.4961
+Stage: 0, Best Epoch 10, Val 0.4968, Test 0.4961
+Stage: 0, Val accuracy: 0.4770±0.0108
+Stage: 0, Test accuracy: 0.4784±0.0109
+Stage: 0, Preprocessing time: 1.2496±0.9304
+Stage: 0, Training time: 13.2566±0.8283
+Stage: 0, Inference time: 4.7514±0.0481

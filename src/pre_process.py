@@ -16,7 +16,6 @@ from dataset import load_dataset
 from utils import (calculate_homophily, clear_memory,
                    entropy, inner_distance, outer_distance)
 
-
 def neighbor_average_features_by_chunks(g, feat, args, style="all", stats=False, memory_efficient=False, target_nid=None):
     """
     Compute multi-hop neighbor-averaged node features by chunks
@@ -270,6 +269,7 @@ def prepare_data(device, args, probs_path, stage=0, load_embs=False, load_label_
         os.makedirs(os.path.dirname(emb_path))
 
     data = load_dataset(aggr_device, args)
+    #print('I\'m fine')
     t1 = time.time()
     
     g, labels, n_classes, train_nid, val_nid, test_nid, evaluator = data
@@ -411,11 +411,11 @@ def prepare_data(device, args, probs_path, stage=0, load_embs=False, load_label_
         else:
             feats = neighbor_average_features_by_chunks(g, feat, args, style=feat_averaging_style, stats=args.dataset not in ["ogbn-mag", "ogbn-papers100M"], memory_efficient=args.memory_efficient)
             feats_train = neighbor_average_features_by_chunks(g_train, feat[g_train.ndata[dgl.NID]], args, style=feat_averaging_style, stats=args.dataset not in ["ogbn-mag", "ogbn-papers100M"], memory_efficient=args.memory_efficient)
-            if args.model in ["sagn", "simple_sagn", "sign"]:
-                for i in range(args.K+1):
-                    feats[i][train_mask] = feats_train[i]
-            else:
-                feats[train_mask] = feats_train
+            #if args.model in ["sagn", "simple_sagn", "sign", "HCE_sign_concate_false", "HCE_sign_concate_true"]:
+            for i in range(args.K+1):
+                feats[i][train_mask] = feats_train[i]
+            #else:
+            #    feats[train_mask] = feats_train
             if load_embs:
                 if not os.path.exists(emb_path):
                     print("saving smoothed node features to " + emb_path)

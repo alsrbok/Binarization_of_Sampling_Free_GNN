@@ -2,6 +2,7 @@ import math
 import os
 import random
 import time
+import sys
 
 import dgl
 import dgl.function as fn
@@ -11,15 +12,16 @@ import torch.nn as nn
 import torch.nn.functional as F
 from tqdm import tqdm
 
-from layers import (MLP, FeedForwardNet, GroupMLP, MultiHeadBatchNorm,
-                    MultiHeadMLP)
+from layers import (MLP, FeedForwardNet, XNOR_Net_FeedForwardNet, XNOR_case1_FeedForwardNet,
+                     GroupMLP, MultiHeadBatchNorm, MultiHeadMLP)
 
+from function import (XNOR_case1_BinLinear)
 
 ################################################################
 # DGL's implementation of SIGN
 class SIGN(nn.Module):
-    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers,
-                 dropout, input_drop):
+    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers, dropout, input_drop,
+                 HCE=False, expert_num = 0, concate_expert = False, binarize = False, only_front = False):
         super(SIGN, self).__init__()
         self.dropout = nn.Dropout(dropout)
         self.prelu = nn.PReLU()
@@ -27,9 +29,13 @@ class SIGN(nn.Module):
         self.input_drop = nn.Dropout(input_drop)
         for hop in range(num_hops):
             self.inception_ffs.append(
-                FeedForwardNet(in_feats, hidden, hidden, n_layers, dropout))
-        self.project = FeedForwardNet(num_hops * hidden, hidden, out_feats,
-                                      n_layers, dropout)
+                FeedForwardNet(in_feats, hidden, hidden, n_layers, dropout, HCE, expert_num, binarize, only_front))
+        if concate_expert == True :
+            self.project = FeedForwardNet(num_hops * hidden, hidden, out_feats,
+                                        n_layers, dropout, HCE, expert_num, binarize)
+        else :
+            self.project = FeedForwardNet(num_hops * hidden, hidden, out_feats,
+                                        n_layers, dropout, binarize = binarize)
 
     def forward(self, feats):
         feats = [self.input_drop(feat) for feat in feats]
@@ -43,12 +49,90 @@ class SIGN(nn.Module):
         for ff in self.inception_ffs:
             ff.reset_parameters()
         self.project.reset_parameters()
+        
+################################################################
+# Binarized SIGN model [XNOR-Net Approach]
+class XNOR_Net_SIGN(nn.Module):
+    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers,
+                 dropout, input_drop):
+        super(XNOR_Net_SIGN, self).__init__()
+        self.dropout = nn.Dropout(dropout)
+        self.prelu = nn.PReLU()
+        self.inception_ffs = nn.ModuleList()
+        self.input_drop = nn.Dropout(input_drop)
+        for hop in range(num_hops):
+            self.inception_ffs.append(
+                XNOR_Net_FeedForwardNet(in_feats, hidden, hidden, n_layers, dropout))
+        self.project = XNOR_Net_FeedForwardNet(num_hops * hidden, hidden, out_feats,
+                                      n_layers, dropout)
+
+    def forward(self, feats):
+        feats = [self.input_drop(feat) for feat in feats]
+        hidden = []
+        for feat, ff in zip(feats, self.inception_ffs):
+            hidden.append(ff(feat))
+        z = torch.cat(hidden, dim=1)
+        out = self.project(self.dropout(self.prelu(z)))
+        return out
+
+    def reset_parameters(self):
+        for ff in self.inception_ffs:
+            ff.reset_parameters()
+        self.project.reset_parameters()
+
+################################################################
+# Binarized SIGN model [XNOR-Net++ case1 Approach]
+class XNOR_case1_SIGN(nn.Module):
+    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers,
+                 dropout, input_drop):
+        super(XNOR_case1_SIGN, self).__init__()
+        self.dropout = nn.Dropout(dropout)
+        self.prelu = nn.PReLU()
+        self.inception_ffs = nn.ModuleList()
+        self.input_drop = nn.Dropout(input_drop)
+        for hop in range(num_hops):
+            self.inception_ffs.append(
+                XNOR_case1_FeedForwardNet(in_feats, hidden, hidden, n_layers, dropout))
+        self.project = XNOR_case1_FeedForwardNet(num_hops * hidden, hidden, out_feats,
+                                      n_layers, dropout)
+
+    def forward(self, feats):
+        feats = [self.input_drop(feat) for feat in feats]
+        """
+        hidden = torch.tensor((), device = 'cuda')
+        #i = 0
+        for feat, ff in zip(feats, self.inception_ffs):
+            hidden = torch.cat((hidden, ff(feat)), dim=1)
+            #print('go ', i, 'go')
+            #i += 1
+        hidden.retain_grad()
+        out = self.project(self.dropout(self.prelu(hidden)))
+        """
+        
+        hidden = []
+        #i = 0
+        for feat, ff in zip(feats, self.inception_ffs):
+            hidden.append(ff(feat))
+            #print('go ', i, 'go')
+            #i += 1
+        z = torch.cat(hidden, dim=1)
+        #z.requires_grad = True
+        #z.retain_grad()
+        out = self.project(self.dropout(self.prelu(z)))
+        
+        return out
+
+    def reset_parameters(self):
+        for ff in self.inception_ffs:
+            ff.reset_parameters()
+        self.project.reset_parameters()
+
 
 ################################################################
 # SAGN model
 class SAGN(nn.Module):
-    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers, num_heads, weight_style="attention", alpha=0.5, focal="first",
-                 hop_norm="softmax", dropout=0.5, input_drop=0.0, attn_drop=0.0, negative_slope=0.2, zero_inits=False, position_emb=False):
+    def __init__(self, in_feats, hidden, out_feats, num_hops, n_layers, num_heads, weight_style="attention", alpha=0.5, focal="first", binarize = False, HCE = False,
+                expert_num = 0, concate_expert = False, hop_norm="softmax", dropout=0.5, input_drop=0.0, attn_drop=0.0, negative_slope=0.2, zero_inits=False, position_emb=False):
         super(SAGN, self).__init__()
         self._num_heads = num_heads
         self._hidden = hidden
@@ -64,8 +148,10 @@ class SAGN(nn.Module):
         self.bn = MultiHeadBatchNorm(num_heads, hidden * num_heads)
         self.relu = nn.ReLU()
         self.input_drop = nn.Dropout(input_drop)
-        self.multihop_encoders = nn.ModuleList([GroupMLP(in_feats, hidden, hidden, num_heads, n_layers, dropout) for i in range(num_hops)])
-        self.res_fc = nn.Linear(in_feats, hidden * num_heads, bias=False)
+        self.multihop_encoders = nn.ModuleList([GroupMLP(in_feats, hidden, hidden, num_heads, n_layers, dropout, binarize, HCE, expert_num) for i in range(num_hops)])
+        
+        if binarize == False : self.res_fc = nn.Linear(in_feats, hidden * num_heads, bias=False)
+        else : self.res_fc = XNOR_case1_BinLinear(in_feats, hidden * num_heads, bias=False)
         
         if weight_style == "attention":
             self.hop_attn_l = nn.Parameter(torch.FloatTensor(size=(1, num_heads, hidden)))
@@ -77,7 +163,10 @@ class SAGN(nn.Module):
         else:
             self.pos_emb = None
         
-        self.post_encoder = GroupMLP(hidden, hidden, out_feats, num_heads, n_layers, dropout)
+        if concate_expert == False :
+            self.post_encoder = GroupMLP(hidden, hidden, out_feats, num_heads, n_layers, dropout, binarize)
+        else :
+            self.post_encoder = GroupMLP(hidden, hidden, out_feats, num_heads, n_layers, dropout, binarize, HCE, expert_num)
         # self.reset_parameters()
 
     def reset_parameters(self):
@@ -99,6 +188,10 @@ class SAGN(nn.Module):
 
     def forward(self, feats):
         out = 0
+        #print(len(feats))
+        #print(feats)
+        #for feat in feats : print(feat.size())
+        #sys.exit()
         feats = [self.input_drop(feat) for feat in feats]
         if self.pos_emb is not None:
             feats = [f +self.pos_emb[[i]] for i, f in enumerate(feats)]

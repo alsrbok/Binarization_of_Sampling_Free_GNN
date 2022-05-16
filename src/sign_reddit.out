@@ -1,0 +1,22 @@
+Namespace(K=3, acc_loss='acc', aggr_gpu=-1, alpha=0.5, attn_drop=0.4, avoid_features=False, batch_size=10000, chunks=1, data_dir='/home/data/pyg/', dataset='reddit', dropout=0.7, emb_path='/home/scx/NARS/', epoch_setting=[1000], eval_batch_size=100000, eval_every=10, example_subsets_path='/home/scx/NARS/sample_relation_subsets/examples', fixed_subsets=False, focal='first', gpu=2, inductive=True, input_drop=0.0, label_K=9, label_drop=0.5, label_mlp_layer=4, label_residual=False, load_embs=False, load_label_emb=False, lr=0.001, mag_emb=False, memory_efficient=False, mlp_layer=2, model='sign', num_heads=1, num_hidden=512, num_runs=10, position_emb=False, pretrain_model='ComplEx', probs_dir='../intermediate_outputs', sample_size=8, seed=0, threshold=[0.9, 0.9], use_labels=False, use_norm=False, warmup_stage=-1, weight_decay=0.0, weight_style='attention', zero_inits=True)
+----------------------------------------------------------------------------------------------------
+Run 0 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 232965
+# Edges: 115081822
+# Train: 153431
+# Val: 23831
+# Test: 55703
+# Classes: 41
+in_feats: 602
+Inductive setting detected
+Load train subgraph
+Compute neighbor-averaged feats all
+Compute neighbor-averaged feats all
+Preprocessing costs 46.9264 s
+# Params: 3355695
+LR: 1.000e-03/ Epoch 10, Time(s): 4.2626 2.9832, Best Val loss: nan, Accs: Train: 0.9453, Val: 0.9465, Test: 0.9474, Best Val: 0.9465, Best Test: 0.9474
+LR: 1.000e-03/ Epoch 20, Time(s): 4.2384 2.7439, Best Val loss: nan, Accs: Train: 0.9566, Val: 0.9554, Test: 0.9555, Best Val: 0.9554, Best Test: 0.9555
+Killed
+do not use gpu 2s

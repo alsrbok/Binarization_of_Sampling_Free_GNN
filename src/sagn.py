@@ -3,6 +3,7 @@ import math
 import os
 import random
 import time
+import sys
 from copy import deepcopy
 
 import dgl
@@ -19,14 +20,62 @@ from dataset import load_dataset
 from gen_models import get_model
 from pre_process import prepare_data
 from train_process import test, train
-from utils import read_subset_list, generate_subset_list, get_n_params, seed
+from utils import read_subset_list, generate_subset_list, get_n_params, seed, adjust_learning_rate
 
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+#os.environ['CUDA_VISIBLE_DEVICES'] = '0, 1, 2' 
+torch.cuda.empty_cache()
+
+def printnorm(self, input, output):
+    # input is a tuple of packed inputs
+    # output is a Tensor. output.data is the Tensor we are interested
+    print(flush=True)
+    print('Inside ' + self.__class__.__name__ + ' forward', flush=True)
+    print('output norm:', output.data.norm(), flush=True)
+    if self.__class__.__name__ != 'XNOR_case1_SIGN' and self.__class__.__name__ != 'SLEModel' :
+        for i in range(len(input)):
+            if torch.isnan(input[i]).any() or torch.isinf(input[i]).any():
+                print("Detect nan or inf in forward input")
+                #sys.exit()
+                #print('input: ', type(input))
+                #print('input',i,': ', type(input[i]))
+                #print('input size:', input[i].size())
+
+        for i in range(len(output)):
+            if torch.isnan(output[i]).any() or torch.isinf(output[i]).any():
+                print("Detect nan or inf in forward output")
+                #sys.exit()
+                #print('output: ', type(output))
+                #print('output size:', output.data.size())
+
+def printgradnorm(self, grad_input, grad_output):
+    print(flush=True)
+    print('Inside ' + self.__class__.__name__ + ' backward', flush=True)
+    print('grad_input norm: ', flush=True)
+    if self.__class__.__name__ != 'XNOR_case1_SIGN' and self.__class__.__name__ != 'SLEModel' :
+        for i in range(len(grad_input)):
+            if grad_input[i] != None :
+                if torch.isnan(grad_input[i]).any() or torch.isinf(grad_input[i]).any():
+                    print('grad_in : error\n')
+                    sys.exit()
+                else:
+                    print('grad_input',i,': ',grad_input[i].norm(), flush=True)
+            
+        for i in range(len(grad_output)):
+            if grad_output[i] != None :
+                if  torch.isnan(grad_output[i]).any() or torch.isinf(grad_output[i]).any():
+                    print('grad_out : error\n')
+                    sys.exit()
+                else:
+                    print('grad_output',i,': ',grad_output[i].norm(), flush=True)
+            
 
 
 def run(args, data, device, stage=0, subset_list=None):
     feats, label_emb, teacher_probs, labels, labels_with_pseudos, in_feats, n_classes, \
         train_nid, train_nid_with_pseudos, val_nid, test_nid, evaluator, _ = data
+
     if args.dataset == "ogbn-papers100M":
         # We only store test/val/test nodes' features for ogbn-papers100M
         labels = labels[torch.cat([train_nid, val_nid, test_nid], dim=0)]
@@ -59,8 +108,20 @@ def run(args, data, device, stage=0, subset_list=None):
     # Initialize model and optimizer for each run
     label_in_feats = label_emb.shape[1] if label_emb is not None else n_classes
     model = get_model(in_feats, label_in_feats, n_classes, stage, args, subset_list=subset_list)
+    #model = nn.DataParallel(model)
     model = model.to(device)
+
+    #for param_tensor in model.state_dict():
+    #    print(param_tensor, "\t", model.state_dict()[param_tensor].size())
     print("# Params:", get_n_params(model))
+    #sys.exit()
+    set_debug = 0
+
+    if set_debug == 1:
+        for name, module in model.named_modules():
+            #print(name)
+            module.register_forward_hook(printnorm)
+            module.register_full_backward_hook(printgradnorm)
     
     if args.dataset in ["ppi", "ppi_large", "yelp"]:
         # For multilabel classification
@@ -81,14 +142,29 @@ def run(args, data, device, stage=0, subset_list=None):
     inference_time = []
     val_accs = []
     val_loss = []
-
+    """
+    print('train : label with pseudos : ', labels_with_pseudos)
+    print('train : label with pseudos size : ', len(labels_with_pseudos))
+    #print('label_emb : ', label_emb)
+    #print('label_emb size : ', len(label_emb))
+    print('train : train_nid : ', train_nid)
+    print('train : train_nid size : ', len(train_nid))
+    print('train : train_nid_with_pseudo : ', train_nid_with_pseudos)
+    print('train : train_nid_with_pseudo size : ', len(train_nid_with_pseudos))
+    print('valid : val_nid : ', val_nid)
+    print('valid : val_nid size : ', len(val_nid))
+    print('test : test_nid : ', test_nid)
+    """
 
     for epoch in range(1, num_epochs + 1):
+        adjust_learning_rate(optimizer, epoch, args)
         start = time.time()
         train(model, feats, label_emb, teacher_probs, labels_with_pseudos, loss_fcn, optimizer, train_loader_with_pseudos, args)
         med = time.time()
 
         if epoch % args.eval_every == 0:
+            current_lr = optimizer.param_groups[0]['lr']
+            print(f"LR: {current_lr:.3e}", end='/ ')
             with torch.no_grad():
                 acc = test(model, feats, label_emb, teacher_probs, labels, loss_fcn, val_loader, test_loader, evaluator,
                            train_nid, val_nid, test_nid, args)
@@ -115,7 +191,7 @@ def run(args, data, device, stage=0, subset_list=None):
     with torch.no_grad():
         best_model.eval()
         probs = []
-        if (args.model in ["sagn", "plain_sagn"] and args.weight_style=="attention") and (not args.avoid_features):
+        if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"] and args.weight_style=="attention") and (not args.avoid_features):
             attn_weights = []
         else:
             attn_weights = None
@@ -128,7 +204,7 @@ def run(args, data, device, stage=0, subset_list=None):
                 batch_label_emb = label_emb[batch].to(device)
             else:
                 batch_label_emb = None
-            if (args.model in ["sagn", "plain_sagn"]) and (not args.avoid_features):
+            if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"]) and (not args.avoid_features):
                 out, a = best_model(batch_feats, batch_label_emb)
             else:
                 out = best_model(batch_feats, batch_label_emb)
@@ -138,10 +214,10 @@ def run(args, data, device, stage=0, subset_list=None):
                 out = out.softmax(dim=1)
             # remember to transfer output probabilities to cpu
             probs.append(out.cpu())
-            if (args.model in ["sagn", "plain_sagn"] and args.weight_style=="attention") and (not args.avoid_features):
+            if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"] and args.weight_style=="attention") and (not args.avoid_features):
                 attn_weights.append(a.cpu().squeeze(1).squeeze(1))
         probs = torch.cat(probs, dim=0)
-        if (args.model in ["sagn", "plain_sagn"] and args.weight_style=="attention") and (not args.avoid_features):
+        if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"] and args.weight_style=="attention") and (not args.avoid_features):
             attn_weights = torch.cat(attn_weights)
         
     del model, best_model
@@ -228,7 +304,7 @@ def main(args):
             torch.save(probs, new_probs_path)
             best_val_accs.append(best_val)
             best_test_accs.append(best_test)
-
+            """
             path = os.path.join("../converge_stats", args.dataset, 
                                 args.model if (args.weight_style == "attention") else (args.model + "_" + args.weight_style),
                                 f"use_labels_{args.use_labels}_use_feats_{not args.avoid_features}_K_{args.K}_label_K_{args.label_K}_seed_{args.seed + i}_stage_{stage}.csv")
@@ -267,7 +343,7 @@ def main(args):
             line.savefig(fig_path)
             plt.close()
             
-            if (args.model in ["sagn", "plain_sagn"] and args.weight_style=="attention") and (not args.avoid_features):
+            if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"] and args.weight_style=="attention") and (not args.avoid_features):
                 path = os.path.join("../attn_weights", args.dataset, args.model,
                     f"use_labels_{args.use_labels}_use_feats_{not args.avoid_features}_K_{args.K}_label_K_{args.label_K}_seed_{args.seed + i}_stage_{stage}.csv")
                 if not os.path.exists(os.path.dirname(path)):
@@ -281,10 +357,12 @@ def main(args):
                 heatmap = heatmap_plt.get_figure()
                 heatmap.savefig(fig_path)
                 plt.close()
-
-            del data, df, probs, attn_weights
+            """
+            #del data, df, probs, attn_weights
+            del data, probs, attn_weights
             with torch.cuda.device(device):
                 torch.cuda.empty_cache()
+            
         total_best_val_accs.append(best_val_accs)
         total_best_test_accs.append(best_test_accs)
         total_val_accs.append(val_accs)
@@ -343,7 +421,7 @@ def define_parser():
                         help="Whether to initialize hop attention vector as zeros")
     parser.add_argument("--lr", type=float, default=0.002)
     parser.add_argument("--dataset", type=str, default="ppi")
-    parser.add_argument("--data_dir", type=str, default="/mnt/ssd/ssd/dataset")
+    parser.add_argument("--data_dir", type=str, default="/home/data/pyg/")
     parser.add_argument("--model", type=str, default="sagn")
     parser.add_argument("--pretrain-model", type=str, default="ComplEx")
     parser.add_argument("--alpha", type=float, default=0.5)

@@ -1,25 +1,71 @@
+import xdrlib
+import os
+import sys
 import torch
 from torch import nn
 import math
 from typing import Optional
 from torch import Tensor
+from function import (XNOR_Net_BinLinear, XNOR_case1_BinLinear, BinActive,  BinarySoftActivation_Head, HCE_Linear)
+#from function import *
 
 eps=1e-5
 
 ################################################################
 # DGL's implementation of FeedForwardNet (MLP) for SIGN
 class FeedForwardNet(nn.Module):
-    def __init__(self, in_feats, hidden, out_feats, n_layers, dropout):
+    def __init__(self, in_feats, hidden, out_feats, n_layers, dropout, HCE = False, expert_num = 0, binarize = False, only_front = False):
         super(FeedForwardNet, self).__init__()
         self.layers = nn.ModuleList()
         self.n_layers = n_layers
+        self.HCE = HCE
+        self.binarize = binarize
         if n_layers == 1:
-            self.layers.append(nn.Linear(in_feats, out_feats))
+            if HCE == False : 
+                if binarize == False :
+                    self.layers.append(nn.Linear(in_feats, out_feats))
+                else :
+                    self.layers.append(XNOR_case1_BinLinear(in_feats, out_feats, initial = True))
+            else : 
+                if binarize == False :
+                    self.layers.append(HCE_Linear(in_feats, out_feats, expert_num = expert_num))
+                else :
+                    self.layers.append(HCE_Linear(in_feats, out_feats, expert_num = expert_num, binarize = binarize))
         else:
-            self.layers.append(nn.Linear(in_feats, hidden))
+            if HCE == False : 
+                if binarize == False :
+                    self.layers.append(nn.Linear(in_feats, hidden))
+                else :
+                    self.layers.append(XNOR_case1_BinLinear(in_feats, hidden, initial = True))
+            else : 
+                if binarize == False :
+                    self.layers.append(HCE_Linear(in_feats, hidden, expert_num = expert_num))
+                else :
+                    self.layers.append(HCE_Linear(in_feats, hidden, expert_num = expert_num, binarize = binarize))
+
             for i in range(n_layers - 2):
-                self.layers.append(nn.Linear(hidden, hidden))
-            self.layers.append(nn.Linear(hidden, out_feats))
+                if HCE == False or only_front == True : 
+                    if binarize == False :
+                        self.layers.append(nn.Linear(hidden, hidden))
+                    else :
+                        self.layers.append(XNOR_case1_BinLinear(hidden, hidden))
+                else : 
+                    if binarize == False :
+                        self.layers.append(HCE_Linear(hidden, hidden, expert_num = expert_num))
+                    else :
+                        self.layers.append(HCE_Linear(hidden, hidden, expert_num = expert_num, binarize = binarize))
+
+
+            if HCE == False or only_front == True : 
+                if binarize == False :
+                    self.layers.append(nn.Linear(hidden, out_feats))
+                else :
+                    self.layers.append(XNOR_case1_BinLinear(hidden, out_feats))
+            else : 
+                if binarize == False :
+                    self.layers.append(HCE_Linear(hidden, out_feats, expert_num = expert_num))
+                else :
+                    self.layers.append(HCE_Linear(hidden, out_feats, expert_num = expert_num, binarize = binarize))
         if self.n_layers > 1:
             self.prelu = nn.PReLU()
             self.dropout = nn.Dropout(dropout)
@@ -28,8 +74,12 @@ class FeedForwardNet(nn.Module):
     def reset_parameters(self):
         gain = nn.init.calculate_gain("relu")
         for layer in self.layers:
-            nn.init.xavier_uniform_(layer.weight, gain=gain)
-            nn.init.zeros_(layer.bias)
+            if self.HCE == False :
+                nn.init.xavier_uniform_(layer.weight, gain=gain)
+                if self.binarize == False :
+                    nn.init.zeros_(layer.bias)
+            else :
+                layer.reset_parameters()
 
     def forward(self, x):
         for layer_id, layer in enumerate(self.layers):
@@ -38,6 +88,66 @@ class FeedForwardNet(nn.Module):
                 x = self.dropout(self.prelu(x))
         return x
 
+
+################################################################
+# Binarized FeedForwardNet (MLP) for Binarized SIGN [XNOR-Net Approach]
+class XNOR_Net_FeedForwardNet(nn.Module):
+    def __init__(self, in_feats, hidden, out_feats, n_layers, dropout):
+        super(XNOR_Net_FeedForwardNet, self).__init__()
+        self.layers = nn.ModuleList()
+        self.n_layers = n_layers
+        if n_layers == 1:
+            self.layers.append(XNOR_Net_BinLinear(in_feats, out_feats))
+        else:
+            self.layers.append(XNOR_Net_BinLinear(in_feats, hidden))
+            for i in range(n_layers - 2):
+                self.layers.append(XNOR_Net_BinLinear(hidden, hidden))
+            self.layers.append(XNOR_Net_BinLinear(hidden, out_feats))
+        if self.n_layers > 1:
+            self.prelu = nn.PReLU()
+            self.dropout = nn.Dropout(dropout)
+        self.reset_parameters()
+
+    def reset_parameters(self):
+        for layer in self.layers:
+            layer.reset_parameters()
+
+    def forward(self, x):
+        for layer_id, layer in enumerate(self.layers):
+            x = layer(x)
+            if layer_id < self.n_layers - 1:
+                x = self.dropout(self.prelu(x))
+        return x
+
+################################################################
+# Binarized FeedForwardNet (MLP) for Binarized SIGN [XNOR-Net++ case1 Approach]
+class XNOR_case1_FeedForwardNet(nn.Module):
+    def __init__(self, in_feats, hidden, out_feats, n_layers, dropout):
+        super(XNOR_case1_FeedForwardNet, self).__init__()
+        self.layers = nn.ModuleList()
+        self.n_layers = n_layers
+        if n_layers == 1:
+            self.layers.append(XNOR_case1_BinLinear(in_feats, out_feats))
+        else:
+            self.layers.append(XNOR_case1_BinLinear(in_feats, hidden))
+            for i in range(n_layers - 2):
+                self.layers.append(XNOR_case1_BinLinear(hidden, hidden))
+            self.layers.append(XNOR_case1_BinLinear(hidden, out_feats))
+        if self.n_layers > 1:
+            self.prelu = nn.PReLU()
+            self.dropout = nn.Dropout(dropout)
+        self.reset_parameters()
+
+    def reset_parameters(self):
+        for layer in self.layers:
+            layer.reset_parameters()
+
+    def forward(self, x):
+        for layer_id, layer in enumerate(self.layers):
+            x = layer(x)
+            if layer_id < self.n_layers - 1:
+                x = self.dropout(self.prelu(x))
+        return x
 
 ################################################################
 # More general MLP layer
@@ -228,39 +338,104 @@ class ParallelMLP(nn.Module):
 ################################################################
 # Modified multi-head Linear layer
 class MultiHeadLinear(nn.Module):
-    def __init__(self, in_feats, out_feats, n_heads, bias=True):
+    def __init__(self, in_feats, out_feats, n_heads, binarize, HCE, expert_num, bias = False):
         super().__init__()
-        self.weight = nn.Parameter(torch.FloatTensor(size=(n_heads, in_feats, out_feats)))
-        if bias:
+        self.in_feats = in_feats
+        self.out_feats = out_feats
+        self.HCE = HCE
+        if HCE == False :
+            self.weight = nn.Parameter(torch.FloatTensor(size=(n_heads, in_feats, out_feats)))
+        else :
+            self.weight = torch.nn.Parameter(torch.Tensor(size=(n_heads, expert_num, in_feats, out_feats)))
+            self.projection = nn.Linear(in_feats, expert_num)
+            self.activation = torch.sigmoid
+            self.HCE = HCE
+            self.expert_num = expert_num
+        
+        self.binarize = binarize
+
+        if bias is not None :
             self.bias = nn.Parameter(torch.FloatTensor(size=(n_heads, 1, out_feats)))
-        else:
+        else :
             self.bias = None
 
-    def reset_parameters(self) -> None:
-        for weight, bias in zip(self.weight, self.bias):
-            nn.init.kaiming_uniform_(weight, a=math.sqrt(5))
-            if bias is not None:
-                fan_in, _ = nn.init._calculate_fan_in_and_fan_out(weight)
-                bound = 1 / math.sqrt(fan_in) if fan_in > 0 else 0
-                nn.init.uniform_(bias, -bound, bound)
+        if binarize :
+            self.scale = nn.Parameter(torch.FloatTensor(size=(n_heads, 1, out_feats)))
+        else :
+            self.scale = None
 
-    # def reset_parameters(self):
-    #     gain = nn.init.calculate_gain("relu")
-    #     for weight in self.weight:
-    #         nn.init.xavier_uniform_(weight, gain=gain)
-    #     if self.bias is not None:
-    #         nn.init.zeros_(self.bias)
+    def reset_parameters(self) -> None:
+        if self.HCE :
+            for i in range(self.expert_num):
+                nn.init.kaiming_uniform_(self.weight[i], a=math.sqrt(5))
+            nn.init.xavier_uniform_(self.projection.weight, gain=gain)
+            nn.init.zeros_(self.projection.bias)
+        else :
+            for weight, bias in zip(self.weight, self.bias):
+                gain = nn.init.calculate_gain("relu")
+                #nn.init.xavier_normal_(weight, gain=gain)
+                nn.init.kaiming_uniform_(weight, a=math.sqrt(5))
+                if bias is not None:
+                    fan_in, _ = nn.init._calculate_fan_in_and_fan_out(weight)
+                    bound = 1 / math.sqrt(fan_in) if fan_in > 0 else 0
+                    nn.init.uniform_(bias, -bound, bound)
+
+        if self.binarize :
+            nn.init.kaiming_uniform_(self.scale, a=math.sqrt(5))
+            
+
 
     def forward(self, x):
-        # input size: [N, d_in] or [H, N, d_in]
-        # output size: [H, N, d_out]
-        if len(x.shape) == 3:
-            x = x.transpose(0, 1)
+        # input size: [B, d_in] or [B, H, d_in]
+        # output size: [B, H, d_out]
+        
+        if self.HCE : # do not consider head_num
+            if len(x.shape) == 3:
+                x = x.transpose(0, 1)
+                num_head, batch_size, in_feature = x.size()
+            else :
+                batch_size, in_feature = x.size()
 
-        x = torch.matmul(x, self.weight)
-        if self.bias is not None:
-            x += self.bias
-        return x.transpose(0, 1)
+            gate_x = self.activation(self.projection(x))
+            #print(gate_x)
+            gate_x = BinarySoftActivation_Head.apply(gate_x)
+            #print(gate_x)
+            #sys.exit()
+            weight = torch.matmul(
+                gate_x,
+                self.weight.view(num_head, self.expert_num, -1)
+            ).view(num_head, batch_size, self.in_feats, self.out_feats)
+
+            if self.binarize :
+                x = BinActive.apply(x)
+                weight = BinActive.apply(weight)
+            
+            #assume num_head = 1
+            x = x.transpose(0,1)
+            weight = torch.squeeze(weight, dim = 0)
+            y = torch.bmm(x, weight)
+            y = y.transpose(0,1)
+
+            if self.binarize :
+                y = y * self.scale.expand(y.size())
+
+
+        else:
+            if len(x.shape) == 3:
+                x = x.transpose(0, 1)
+
+            if self.binarize:
+                weight = BinActive.apply(self.weight)
+                y = torch.matmul(x, weight)
+                y = y * self.scale.expand(y.size())
+            
+            else :
+                y = torch.matmul(x, self.weight)
+            
+            if self.bias is not None:
+                y += self.bias
+        
+        return y.transpose(0, 1)
 
 # Modified multi-head BatchNorm1d layer
 class MultiHeadBatchNorm(nn.Module):
@@ -318,20 +493,21 @@ class MultiHeadBatchNorm(nn.Module):
 
 # Another multi-head MLP defined from scratch
 class GroupMLP(nn.Module):
-    def __init__(self, in_feats, hidden, out_feats, n_heads, n_layers, dropout, input_drop=0., residual=False, normalization="batch"):
+    def __init__(self, in_feats, hidden, out_feats, n_heads, n_layers, dropout, binarize, HCE = False, expert_num = 0,input_drop=0., residual=False, normalization="batch"):
         super(GroupMLP, self).__init__()
         self._residual = residual
         self.layers = nn.ModuleList()
         self.norms = nn.ModuleList()
         self._n_heads = n_heads
         self._n_layers = n_layers
+        self.binarize = binarize
         
         self.input_drop = nn.Dropout(input_drop)
 
         if self._n_layers == 1:
-            self.layers.append(MultiHeadLinear(in_feats, out_feats, n_heads))
+            self.layers.append(MultiHeadLinear(in_feats, out_feats, n_heads, binarize, HCE, expert_num))
         else:
-            self.layers.append(MultiHeadLinear(in_feats, hidden, n_heads))
+            self.layers.append(MultiHeadLinear(in_feats, hidden, n_heads, binarize, HCE, expert_num))
             if normalization == "batch":
                 self.norms.append(MultiHeadBatchNorm(n_heads, hidden * n_heads))
                 # self.norms.append(nn.BatchNorm1d(hidden * n_heads))
@@ -340,7 +516,7 @@ class GroupMLP(nn.Module):
             if normalization == "none":
                 self.norms.append(nn.Identity())
             for i in range(self._n_layers - 2):
-                self.layers.append(MultiHeadLinear(hidden, hidden, n_heads))
+                self.layers.append(MultiHeadLinear(hidden, hidden, n_heads, binarize, HCE, expert_num))
                 if normalization == "batch":
                     self.norms.append(MultiHeadBatchNorm(n_heads, hidden * n_heads))
                     # self.norms.append(nn.BatchNorm1d(hidden * n_heads))
@@ -348,7 +524,7 @@ class GroupMLP(nn.Module):
                     self.norms.append(nn.GroupNorm(n_heads, hidden * n_heads))
                 if normalization == "none":
                     self.norms.append(nn.Identity())
-            self.layers.append(MultiHeadLinear(hidden, out_feats, n_heads))
+            self.layers.append(MultiHeadLinear(hidden, out_feats, n_heads, binarize, HCE, expert_num))
         if self._n_layers > 1:
             self.relu = nn.ReLU()
             self.dropout = nn.Dropout(dropout)
@@ -362,17 +538,21 @@ class GroupMLP(nn.Module):
                     fan_in, _ = nn.init._calculate_fan_in_and_fan_out(layer.weight[head])
                     bound = 1 / math.sqrt(fan_in) if fan_in > 0 else 0
                     nn.init.uniform_(layer.bias[head], -bound, bound)
+                if self.binarize:
+                    nn.init.kaiming_uniform_(layer.scale[head], a=math.sqrt(5))
         self.reset_parameters()
 
     def reset_parameters(self):
 
-        gain = nn.init.calculate_gain("relu")
-    
+        #gain = nn.init.calculate_gain("relu")
         for head in range(self._n_heads):
             for layer in self.layers:
-                nn.init.xavier_uniform_(layer.weight[head], gain=gain)
+                #nn.init.xavier_uniform_(layer.weight[head], gain=gain)
+                nn.init.kaiming_uniform_(layer.weight, a=math.sqrt(5))
                 if layer.bias is not None:
                     nn.init.zeros_(layer.bias[head])
+                if self.binarize:
+                    nn.init.kaiming_uniform_(layer.scale[head], a=math.sqrt(5))
         for norm in self.norms:
             norm.reset_parameters()
             # for norm in self.norms:
@@ -390,6 +570,8 @@ class GroupMLP(nn.Module):
         if self._residual:
             prev_x = x
         for layer_id, layer in enumerate(self.layers):
+            if self.binarize:
+                x = BinActive.apply(x)
             x = layer(x)
             
             if layer_id < self._n_layers - 1:

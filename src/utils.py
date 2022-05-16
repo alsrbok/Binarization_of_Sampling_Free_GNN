@@ -41,6 +41,19 @@ def get_n_params(model):
         pp += nn
     return pp
 
+def adjust_learning_rate(optimizer, epoch, args):
+    """Sets the learning rate to the initial LR decayed by 10 every 400 epochs"""
+    if(epoch < 10):                                  # warm-up
+        lr = 0.0 + args.lr * epoch / 10
+    else:
+        lr = args.lr * (0.1 ** (epoch // 400))
+    #if epoch >= 150:
+    #    lr = lr * 0.1
+    #print(' Learning rate:', lr)
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
+    return lr
+
 def to_scipy(tensor):
     """Convert a sparse tensor to scipy matrix"""
     values = tensor._values()

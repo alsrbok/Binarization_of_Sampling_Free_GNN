@@ -13,7 +13,6 @@ import json
 
 from networkx.readwrite import json_graph
 
-
 def get_ogb_evaluator(dataset):
     """
     Get evaluator from Open Graph Benchmark based on dataset
@@ -124,6 +123,7 @@ def load_dataset(device, args):
         test_nid = splitted_idx["test"]
         g, labels = dataset[0]
         n_classes = dataset.num_classes
+        #print('I\'m Fine')
         g = g.to(device)
 
         if args.dataset == "ogbn-arxiv":

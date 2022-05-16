@@ -23,10 +23,12 @@ def train(model, feats, label_emb, teacher_probs, labels, loss_fcn, optimizer, t
         else:
             batch_label_emb = None
         
-        if (args.model in ["sagn", "plain_sagn"]) and (not args.avoid_features):
+        if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"]) and (not args.avoid_features):
             out, _ = model(batch_feats, batch_label_emb)
         else:
             out = model(batch_feats, batch_label_emb)
+        #print(out)
+        #print(labels[batch])
         loss = loss_fcn(out, labels[batch])
         # T = 0.5
         # alpha = 0.5
@@ -34,6 +36,7 @@ def train(model, feats, label_emb, teacher_probs, labels, loss_fcn, optimizer, t
         #     loss = (1-alpha) * loss + alpha * F.kl_div(F.log_softmax(out, dim=-1) / T, teacher_probs[batch] / T) * (T * T)
         optimizer.zero_grad()
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), 1)
         optimizer.step()
 
 
@@ -55,7 +58,7 @@ def test(model, feats, label_emb, teacher_probs, labels, loss_fcn, val_loader, t
         else:
             batch_label_emb = None
         # We can get attention scores from SAGN
-        if (args.model in ["sagn", "plain_sagn"]) and (not args.avoid_features):
+        if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"]) and (not args.avoid_features):
             out, _ = model(batch_feats, batch_label_emb)
         else:
             out = model(batch_feats, batch_label_emb)
@@ -74,7 +77,7 @@ def test(model, feats, label_emb, teacher_probs, labels, loss_fcn, val_loader, t
             batch_label_emb = label_emb[batch].to(device)
         else:
             batch_label_emb = None
-        if (args.model in ["sagn", "plain_sagn"]) and (not args.avoid_features):
+        if (args.model in ["sagn", "plain_sagn", "xnor_case1_sagn", "HCE_sagn_false", "HCE_sagn_true", "HCE_sagn_xnor_case1"]) and (not args.avoid_features):
             out, _ = model(batch_feats, batch_label_emb)
         else:
             out = model(batch_feats, batch_label_emb)

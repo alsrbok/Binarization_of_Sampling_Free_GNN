@@ -1,0 +1,21 @@
+Namespace(K=2, acc_loss='acc', aggr_gpu=-1, alpha=0.5, attn_drop=0.1, avoid_features=False, batch_size=256, chunks=1, data_dir='/home/data/pyg/', dataset='ppi', dropout=0.3, emb_path='/home/scx/NARS/', epoch_setting=[2000], eval_batch_size=100000, eval_every=20, example_subsets_path='/home/scx/NARS/sample_relation_subsets/examples', fixed_subsets=False, focal='first', gpu=1, inductive=True, input_drop=0.0, label_K=9, label_drop=0.5, label_mlp_layer=4, label_residual=False, load_embs=False, load_label_emb=False, lr=0.001, mag_emb=False, memory_efficient=False, mlp_layer=3, model='sagn', num_heads=1, num_hidden=1024, num_runs=10, position_emb=False, pretrain_model='ComplEx', probs_dir='../intermediate_outputs', sample_size=8, seed=0, threshold=[0.95, 0.95], use_labels=False, use_norm=False, warmup_stage=-1, weight_decay=3e-06, weight_style='attention', zero_inits=True)
+----------------------------------------------------------------------------------------------------
+Run 0 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+Traceback (most recent call last):
+  File "sagn.py", line 463, in <module>
+    main(args)
+  File "sagn.py", line 287, in main
+    data = prepare_data(device, args, probs_path, stage, load_embs=args.load_embs, load_label_emb=args.load_label_emb, subset_list=subset_list)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/pre_process.py", line 271, in prepare_data
+    data = load_dataset(aggr_device, args)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/dataset.py", line 74, in load_dataset
+    data = load_ppi_data(args.data_dir)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/dataset.py", line 185, in load_ppi_data
+    adj_full = sp.load_npz(os.path.join(root, 'ppi', 'adj_full.npz'))
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/scipy/sparse/_matrix_io.py", line 123, in load_npz
+    with np.load(file, **PICKLE_KWARGS) as loaded:
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/numpy/lib/npyio.py", line 417, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/data/pyg/ppi/adj_full.npz'

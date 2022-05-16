@@ -1,0 +1,41 @@
+Namespace(K=5, acc_loss='acc', aggr_gpu=-1, alpha=0.5, attn_drop=0.4, avoid_features=False, batch_size=600, chunks=1, data_dir='/home/data/pyg/', dataset='ogbn-products', dropout=0.5, emb_path='/home/scx/NARS/', epoch_setting=[1000], eval_batch_size=600, eval_every=10, example_subsets_path='/home/scx/NARS/sample_relation_subsets/examples', fixed_subsets=False, focal='first', gpu=0, inductive=False, input_drop=0.2, label_K=9, label_drop=0.5, label_mlp_layer=4, label_residual=False, load_embs=False, load_label_emb=False, lr=0.001, mag_emb=False, memory_efficient=False, mlp_layer=2, model='HCE_sagn_xnor_case1', num_heads=1, num_hidden=512, num_runs=5, position_emb=False, pretrain_model='ComplEx', probs_dir='../intermediate_outputs', sample_size=8, seed=0, threshold=[0.9, 0.9], use_labels=False, use_norm=False, warmup_stage=-1, weight_decay=0.0, weight_style='attention', zero_inits=True)
+----------------------------------------------------------------------------------------------------
+Run 0 start training
+----------------------------------------------------------------------------------------------------
+Stage 0 start training
+# Nodes: 2449029
+# Edges: 123718280
+# Train: 196615
+# Val: 39323
+# Test: 2213091
+# Classes: 47
+in_feats: 100
+Compute neighbor-averaged feats all
+Preprocessing costs 14.3668 s
+# Params: 7895534
+Traceback (most recent call last):
+  File "sagn.py", line 467, in <module>
+    main(args)
+  File "sagn.py", line 294, in main
+    best_val, best_test, probs, train_time, inference_time, val_acc, val_loss, attn_weights = run(args, data, device, stage, subset_list=subset_list)
+  File "sagn.py", line 162, in run
+    train(model, feats, label_emb, teacher_probs, labels_with_pseudos, loss_fcn, optimizer, train_loader_with_pseudos, args)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/train_process.py", line 27, in train
+    out, _ = model(batch_feats, batch_label_emb)
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/models.py", line 417, in forward
+    out = self.base_model(feats)
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/models.py", line 200, in forward
+    hidden.append(self.multihop_encoders[i](feats[i]).view(-1, self._num_heads, self._hidden))
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/layers.py", line 574, in forward
+    x = layer(x)
+  File "/home/mingyupark/anaconda3/envs/pyg/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/mingyupark/pyg/SAGN_with_SLE/src/layers.py", line 396, in forward
+    batch_size, in_feature = x.size()
+ValueError: too many values to unpack (expected 2)

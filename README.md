@@ -8,7 +8,4 @@ Current code is about Strong Baseline for Binarized GNN.
 
 Baseline model "SAGN" is introduced by following paper: [Scalable and Adaptive Graph Neural Networks with Self-Label-Enhanced training](https://arxiv.org/abs/2104.09376)
 
-They modified "SIGN" Network by adding a residual term and attention mechanism.
-Moreover, they suggested SLE training method.
-
 Baseline code is https://github.com/skepsun/SAGN_with_SLE

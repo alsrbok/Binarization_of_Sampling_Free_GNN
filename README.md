@@ -3,7 +3,6 @@
 I will upload the full code after I upload a thesis on arxiv.
 
 Current code is about Strong Baseline for Binarized GNN.
-
 (High Capacity Expert Binary Network, Binary to Real Network)
 
 Baseline model "SAGN" is introduced by following paper: [Scalable and Adaptive Graph Neural Networks with Self-Label-Enhanced training](https://arxiv.org/abs/2104.09376)
